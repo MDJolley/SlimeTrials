@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtfsia7swrm3f"]
+
+[ext_resource type="Script" path="res://test/block.gd" id="1_gk7q7"]
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("1_gk7q7")
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="."]
+
+[node name="Polygon" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-128, -64, 128, -64, 128, 64, -128, 64)

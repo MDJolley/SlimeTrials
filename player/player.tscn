@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0g2jxvoftjuf"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
+[ext_resource type="PackedScene" uid="uid://pbd3mndqnsu" path="res://entities/hurtbox.tscn" id="1_fyer1"]
+[ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
+[ext_resource type="Script" path="res://player/state_machine/idle_state.gd" id="5_yofnv"]
+[ext_resource type="Script" path="res://player/state_machine/walking.gd" id="6_npuwh"]
+[ext_resource type="Script" path="res://player/state_machine/falling.gd" id="7_5a81g"]
+[ext_resource type="Script" path="res://player/state_machine/jumping.gd" id="8_1m6bl"]
+[ext_resource type="Script" path="res://player/state_machine/dashing.gd" id="9_ld60b"]
+[ext_resource type="Script" path="res://player/state_machine/double_jumping.gd" id="10_0usld"]
+[ext_resource type="Script" path="res://player/state_machine/wall_jumping.gd" id="11_7klje"]
+[ext_resource type="Script" path="res://player/state_machine/wall_sliding.gd" id="12_asoo4"]
+[ext_resource type="Script" path="res://player/state_machine/hyper_jumping.gd" id="12_kknay"]
+[ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://sprite_sheets/Slime.png" id="12_ylhp1"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 16
+script = ExtResource("1_e85v1")
+dash_time = 0.2
+wall_slide_speed = 400.0
+
+[node name="HealthComponent" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("1_fyer1")]
+position = Vector2(-3.2, -20.8)
+scale = Vector2(0.916667, 0.857143)
+polygon = PackedVector2Array(-13.9636, 5.6, -13.9636, 17.2667, -10.6909, 24.2667, 17.6727, 24.2667, 20.9454, 17.2667, 20.9454, 5.6, 13.3091, -2.56667, -6.32727, -2.56667)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_or5if")
+starting_state = NodePath("Walking")
+
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "jumping", "dashing")]
+script = ExtResource("5_yofnv")
+walking = NodePath("../Walking")
+jumping = NodePath("../Jumping")
+dashing = NodePath("../Dashing")
+
+[node name="Walking" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("idle", "falling", "jumping", "dashing")]
+script = ExtResource("6_npuwh")
+idle = NodePath("../Idle")
+falling = NodePath("../Falling")
+jumping = NodePath("../Jumping")
+dashing = NodePath("../Dashing")
+
+[node name="Falling" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "double_jumping", "dashing", "wall_slide")]
+script = ExtResource("7_5a81g")
+walking = NodePath("../Walking")
+double_jumping = NodePath("../DoubleJumping")
+dashing = NodePath("../Dashing")
+wall_slide = NodePath("../WallSliding")
+
+[node name="Jumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "double_jumping", "dashing", "wall_jumping")]
+script = ExtResource("8_1m6bl")
+falling = NodePath("../Falling")
+double_jumping = NodePath("../DoubleJumping")
+dashing = NodePath("../Dashing")
+wall_jumping = NodePath("../WallJumping")
+
+[node name="Dashing" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "walking", "hyper")]
+script = ExtResource("9_ld60b")
+falling = NodePath("../Falling")
+walking = NodePath("../Walking")
+hyper = NodePath("../HyperJumping")
+
+[node name="DoubleJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "dashing")]
+script = ExtResource("10_0usld")
+falling = NodePath("../Falling")
+dashing = NodePath("../Dashing")
+
+[node name="WallJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("double_jumping", "falling", "dashing")]
+script = ExtResource("11_7klje")
+double_jumping = NodePath("../DoubleJumping")
+falling = NodePath("../Falling")
+dashing = NodePath("../Dashing")
+
+[node name="WallSliding" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("wall_jumping", "falling", "dashing", "walking")]
+script = ExtResource("12_asoo4")
+wall_jumping = NodePath("../WallJumping")
+falling = NodePath("../Falling")
+dashing = NodePath("../Dashing")
+walking = NodePath("../Walking")
+
+[node name="HyperJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("double_jumping", "walking", "wall_sliding")]
+script = ExtResource("12_kknay")
+double_jumping = NodePath("../DoubleJumping")
+walking = NodePath("../Walking")
+wall_sliding = NodePath("../WallSliding")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("12_ylhp1")
+
+[node name="WallDetector" type="Node2D" parent="."]
+
+[node name="RightWallDetectorTop" type="RayCast2D" parent="WallDetector"]
+position = Vector2(10, -17)
+target_position = Vector2(9, 0)
+collision_mask = 16
+
+[node name="RightWallDetectorBottom" type="RayCast2D" parent="WallDetector"]
+position = Vector2(9, -1)
+target_position = Vector2(9, 0)
+collision_mask = 16
+
+[node name="LeftWallDetectorBottom" type="RayCast2D" parent="WallDetector"]
+position = Vector2(-9, -1)
+target_position = Vector2(-9, 0)
+collision_mask = 16
+
+[node name="LeftWallDetectorTop" type="RayCast2D" parent="WallDetector"]
+position = Vector2(-9, -17)
+target_position = Vector2(-9, 0)
+collision_mask = 16
+
+[editable path="Hurtbox"]
