@@ -15,26 +15,26 @@ layer_0/tile_data = PackedInt32Array(524296, 131073, 2, 458760, 131073, 1, 39322
 
 [node name="One Way Platforms" type="Node2D" parent="Special Terrain Holder"]
 
-[node name="OneWayPlatform2" parent="Special Terrain Holder/One Way Platforms" instance=ExtResource("3_rfxgr")]
+[node name="Elevator Lower" parent="Special Terrain Holder/One Way Platforms" instance=ExtResource("3_rfxgr")]
 position = Vector2(1328, -240)
 
-[node name="OneWayPlatform2" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform2" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform2" parent="Special Terrain Holder/One Way Platforms/Elevator Lower" instance=ExtResource("3_rfxgr")]
 position = Vector2(32, 0)
 
-[node name="OneWayPlatform3" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform2" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform3" parent="Special Terrain Holder/One Way Platforms/Elevator Lower" instance=ExtResource("3_rfxgr")]
 position = Vector2(96, 0)
 
-[node name="OneWayPlatform" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform2" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform" parent="Special Terrain Holder/One Way Platforms/Elevator Lower" instance=ExtResource("3_rfxgr")]
 position = Vector2(64, 0)
 
-[node name="OneWayPlatform" parent="Special Terrain Holder/One Way Platforms" instance=ExtResource("3_rfxgr")]
+[node name="Elevator Upper" parent="Special Terrain Holder/One Way Platforms" instance=ExtResource("3_rfxgr")]
 position = Vector2(1328, -496)
 
-[node name="OneWayPlatform2" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform2" parent="Special Terrain Holder/One Way Platforms/Elevator Upper" instance=ExtResource("3_rfxgr")]
 position = Vector2(32, 0)
 
-[node name="OneWayPlatform3" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform3" parent="Special Terrain Holder/One Way Platforms/Elevator Upper" instance=ExtResource("3_rfxgr")]
 position = Vector2(96, 0)
 
-[node name="OneWayPlatform" parent="Special Terrain Holder/One Way Platforms/OneWayPlatform" instance=ExtResource("3_rfxgr")]
+[node name="OneWayPlatform" parent="Special Terrain Holder/One Way Platforms/Elevator Upper" instance=ExtResource("3_rfxgr")]
 position = Vector2(64, 0)
