@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://i47rr27dahq6"]
+
+[ext_resource type="Texture2D" path="res://sprite_sheets/falling_platform-Sheet.png" id="1_bcwwt"]
+[ext_resource type="Script" path="res://world/falling_platform_object.gd" id="1_hj3g7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojuth"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq0g5"]
+size = Vector2(30.5, 0.903229)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nboel"]
+size = Vector2(20, 0.5)
+
+[node name="FallingPlatformObject" type="CharacterBody2D"]
+collision_layer = 16
+motion_mode = 1
+script = ExtResource("1_hj3g7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ojuth")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bcwwt")
+hframes = 3
+
+[node name="TriggerArea" type="Area2D" parent="."]
+scale = Vector2(1, 1.00541)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea"]
+position = Vector2(0, -16.9086)
+shape = SubResource("RectangleShape2D_jq0g5")
+
+[node name="KillArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+position = Vector2(0, 17)
+scale = Vector2(0.916685, -1.25859)
+shape = SubResource("RectangleShape2D_nboel")
+
+[connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
