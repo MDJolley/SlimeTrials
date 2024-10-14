@@ -21,6 +21,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	is_hyperdashing = false
 	dash_vector = Vector2(Input.get_axis("move_left","move_right"), Input.get_axis("move_up", "move_down"))
 	if dash_vector == Vector2(0,0):
 		#TODO Dash in direction player is facing
@@ -45,3 +46,4 @@ func end_dash() -> void:
 	if not is_hyperdashing:
 		parent.velocity = parent.velocity.normalized() * parent.air_move_speed
 	dashing = false
+	is_hyperdashing = false

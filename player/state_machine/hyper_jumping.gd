@@ -15,12 +15,10 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
-	print("Begining hyper with velocity of ", parent.velocity.x)
 	parent.velocity.y -= parent.jump_strength
 
 
 func process_physics(delta: float) -> State:
-	print("current x velocity = ", parent.velocity.x)
 	if parent._check_if_valid_wall() && parent.velocity.y >= 0:
 		return wall_sliding
 	if parent.is_on_floor() && parent.velocity.y >= 0:
