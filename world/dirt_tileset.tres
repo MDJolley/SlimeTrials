@@ -1,6 +1,29 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://b6gxvsbbdcxad"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://b6gxvsbbdcxad"]
 
 [ext_resource type="Texture2D" uid="uid://b67aq1n46q337" path="res://sprite_sheets/Terrarin Template.png" id="1_24bel"]
+[ext_resource type="Texture2D" uid="uid://ob3d1prngam2" path="res://sprite_sheets/Spikes.png" id="1_vqaiu"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xxfmx"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1e5i3"]
+texture = ExtResource("1_vqaiu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 12, 12, 12, 12, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, 12, 16, 12, 16, 16, -16, 16)
+2:0/0 = 0
+2:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -16, -12, 12, 16, 12, 16, 16, -16, 16, -16, -16)
+0:1/0 = 0
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(16, -16, 16, 16, 12, 16, 12, -16)
+2:1/0 = 0
+2:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -16, -12, 16, -16, 16, -16, -16)
+0:2/0 = 0
+0:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, 12, 16, 12, -12, -16, -12)
+1:2/0 = 0
+1:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -12, -16, -12)
+2:2/0 = 0
+2:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-12, -16, 16, -16, 16, -12, -12, -11.5, -12, 16, -16, 16, -16, -16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_liyxl"]
 texture = ExtResource("1_24bel")
@@ -386,7 +409,13 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 0
+physics_layer_1/collision_layer = 32
+physics_layer_1/collision_mask = 0
+physics_layer_1/physics_material = SubResource("PhysicsMaterial_xxfmx")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = ""
+custom_data_layer_0/type = 0
 sources/1 = SubResource("TileSetAtlasSource_liyxl")
+sources/0 = SubResource("TileSetAtlasSource_1e5i3")
