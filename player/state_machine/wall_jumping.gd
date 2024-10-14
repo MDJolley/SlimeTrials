@@ -16,6 +16,8 @@ var wall_jump_vector : Vector2
 var blocked_input : int
 
 func process_input(event: InputEvent) -> State:
+	if event.is_action_pressed("dash") && parent.has_dash:
+		return dashing
 	return null
 
 func enter() -> void:

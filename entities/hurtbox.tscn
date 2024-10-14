@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://pbd3mndqnsu"]
-
-[node name="Hurtbox" type="CollisionPolygon2D"]
-modulate = Color(0.137605, 0.740659, 0.554297, 1)
-self_modulate = Color(0.452817, 0.994468, 0.808761, 1)
-polygon = PackedVector2Array(-25, 58, 35, 56, 41, -46, -31, -50)

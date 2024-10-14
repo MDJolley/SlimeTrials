@@ -9,6 +9,7 @@ const GRAVITY : float = 50
 var has_dash : bool
 var has_double_jump : bool
 var touching_wall : bool = false
+var respawn_location : Vector2
 
 @export var ground_acceleration : float = .4
 @export var ground_move_speed : float = 500
@@ -32,7 +33,7 @@ func _check_if_valid_wall() -> bool:
 	
 func _ready() -> void:
 	state_machine.init(self)
-
+	respawn_location = global_position
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -42,3 +43,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
+
+func die() -> void:
+	global_position = respawn_location

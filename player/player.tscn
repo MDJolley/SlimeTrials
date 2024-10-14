@@ -1,7 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
-[ext_resource type="PackedScene" uid="uid://pbd3mndqnsu" path="res://entities/hurtbox.tscn" id="1_fyer1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
 [ext_resource type="Script" path="res://player/state_machine/idle_state.gd" id="5_yofnv"]
 [ext_resource type="Script" path="res://player/state_machine/walking.gd" id="6_npuwh"]
@@ -13,6 +12,7 @@
 [ext_resource type="Script" path="res://player/state_machine/wall_sliding.gd" id="12_asoo4"]
 [ext_resource type="Script" path="res://player/state_machine/hyper_jumping.gd" id="12_kknay"]
 [ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://sprite_sheets/Slime.png" id="12_ylhp1"]
+[ext_resource type="Script" path="res://player/hurtbox.gd" id="13_aalba"]
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
@@ -22,12 +22,10 @@ wall_slide_speed = 400.0
 
 [node name="HealthComponent" type="Node2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CollisionShape" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-15, -14, -15, -4, -11, 0, 11, 0, 15, -4, 15, -14, 12, -20, 3, -24, -3, -24, -12, -20)
 
-[node name="Hurtbox" parent="." instance=ExtResource("1_fyer1")]
-position = Vector2(-3.2, -20.8)
-scale = Vector2(0.916667, 0.857143)
-polygon = PackedVector2Array(-13.9636, 5.6, -13.9636, 17.2667, -10.6909, 24.2667, 17.6727, 24.2667, 20.9454, 17.2667, 20.9454, 5.6, 13.3091, -2.56667, -6.32727, -2.56667)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -119,4 +117,12 @@ position = Vector2(-9, -17)
 target_position = Vector2(-9, 0)
 collision_mask = 16
 
-[editable path="Hurtbox"]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 40
+script = ExtResource("13_aalba")
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="Hurtbox"]
+polygon = PackedVector2Array(-15, -14, -15, -4, -11, 0, 11, 0, 15, -4, 15, -14, 12, -20, 3, -24, -3, -24, -12, -20)
+
+[connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
