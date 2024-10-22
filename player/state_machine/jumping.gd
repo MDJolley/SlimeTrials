@@ -26,6 +26,6 @@ func process_physics(delta: float) -> State:
 	if parent.velocity.y >= 0:
 		return falling
 	
-	
+	print(parent.velocity.y, " <- Jump velocity")
 	parent.move_and_slide()
 	return null

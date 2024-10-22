@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://devoil4weqo3x"]
+
+[ext_resource type="Script" path="res://world/moving_platforms/moving_platform.gd" id="1_10wui"]
+
+[sub_resource type="Curve2D" id="Curve2D_7ciqx"]
+bake_interval = 512.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -224, 0, 0, 0, 0, 0, 224, 0, 0, 0, 0, 0, -224, 0)
+}
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgj6a"]
+size = Vector2(352, 32)
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_10wui")
+
+[node name="Path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7ciqx")
+
+[node name="PathFollow" type="PathFollow2D" parent="Path"]
+position = Vector2(-224, 0)
+rotates = false
+
+[node name="Platform" type="CharacterBody2D" parent="Path/PathFollow"]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Polygon2D" type="Polygon2D" parent="Path/PathFollow/Platform"]
+texture_rotation = 0.165806
+polygon = PackedVector2Array(-176, -16, 176, -16, 176, 16, -176, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path/PathFollow/Platform"]
+shape = SubResource("RectangleShape2D_hgj6a")
