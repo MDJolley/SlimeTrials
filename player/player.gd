@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var state_machine = $StateMachine
 @onready var wall_detector: Node2D = $WallDetector
 
-const GRAVITY : float = 50
+const GRAVITY : float = 35
 
 var has_dash : bool
 var has_double_jump : bool

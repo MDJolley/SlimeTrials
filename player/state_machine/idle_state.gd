@@ -3,6 +3,7 @@ extends State
 @export var walking : State
 @export var jumping : State
 @export var dashing : State
+@export var falling : State
 #TODO export atk
 
 func enter() -> void:
@@ -18,4 +19,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if !parent.is_on_floor():
+		return falling
+	parent.velocity.y = parent.GRAVITY
+	parent.move_and_slide()
 	return null

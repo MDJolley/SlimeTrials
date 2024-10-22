@@ -17,6 +17,10 @@
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 script = ExtResource("1_e85v1")
+ground_move_speed = 300.0
+air_move_speed = 400.0
+jump_strength = 700.0
+double_jump_strength = 700.0
 dash_time = 0.2
 wall_slide_speed = 400.0
 
@@ -29,16 +33,26 @@ polygon = PackedVector2Array(-15, -14, -15, -4, -11, 0, 11, 0, 15, -4, 15, -14, 
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.03
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 1.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
 
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_or5if")
 starting_state = NodePath("Walking")
 
-[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "jumping", "dashing")]
+[node name="Idle" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "jumping", "dashing", "falling")]
 script = ExtResource("5_yofnv")
 walking = NodePath("../Walking")
 jumping = NodePath("../Jumping")
 dashing = NodePath("../Dashing")
+falling = NodePath("../Falling")
 
 [node name="Walking" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("idle", "falling", "jumping", "dashing")]
 script = ExtResource("6_npuwh")

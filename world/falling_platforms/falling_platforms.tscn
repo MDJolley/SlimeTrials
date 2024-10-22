@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://7vsc1vubakip"]
+
+[ext_resource type="Script" path="res://world/falling_platforms/falling_platforms.gd" id="1_3ruji"]
+[ext_resource type="PackedScene" uid="uid://i47rr27dahq6" path="res://world/falling_platforms/falling_platform_object.tscn" id="2_nda12"]
+
+[node name="FallingPlatforms" type="Node2D"]
+script = ExtResource("1_3ruji")
+
+[node name="FallingPlatformObject" parent="." instance=ExtResource("2_nda12")]
