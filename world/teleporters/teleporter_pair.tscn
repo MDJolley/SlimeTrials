@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://t1ro5rnxhmr6"]
+
+[ext_resource type="Script" path="res://world/teleporters/teleporter.gd" id="1_6c2sn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_voyc5"]
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrdqm"]
+size = Vector2(56, 12)
+
+[node name="TeleporterPair" type="Node2D"]
+
+[node name="Teleporter1" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_6c2sn")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Teleporter1"]
+shape = SubResource("RectangleShape2D_voyc5")
+
+[node name="ReturnPoint" type="Marker2D" parent="Teleporter1"]
+position = Vector2(0, -48)
+
+[node name="Sprite" type="Polygon2D" parent="Teleporter1"]
+color = Color(0.0862745, 0.713726, 0.168627, 1)
+polygon = PackedVector2Array(-48, -16, 48, -16, 48, 16, -48, 16)
+
+[node name="Receiver" type="Area2D" parent="Teleporter1"]
+position = Vector2(0, -3)
+collision_layer = 0
+monitorable = false
+
+[node name="ReceiverShape" type="CollisionShape2D" parent="Teleporter1/Receiver"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_mrdqm")
+
+[connection signal="body_entered" from="Teleporter1/Receiver" to="Teleporter1" method="_on_receiver_body_entered"]
+[connection signal="body_exited" from="Teleporter1/Receiver" to="Teleporter1" method="_on_receiver_body_exited"]

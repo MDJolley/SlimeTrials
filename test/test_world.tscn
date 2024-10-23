@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnu6xkyq3o46h"]
+[gd_scene load_steps=8 format=3 uid="uid://bnu6xkyq3o46h"]
 
 [ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="1_lo4m8"]
 [ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/dirt_terrain.tscn" id="2_44om4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7vsc1vubakip" path="res://world/falling_platforms/falling_platforms.tscn" id="4_xaghl"]
 [ext_resource type="PackedScene" uid="uid://devoil4weqo3x" path="res://world/moving_platforms/moving_platform.tscn" id="5_gb7qm"]
 [ext_resource type="PackedScene" uid="uid://c2qid70w3gwqk" path="res://world/conveyor_belts/conveyor.tscn" id="6_jq8hp"]
+[ext_resource type="PackedScene" uid="uid://t1ro5rnxhmr6" path="res://world/teleporters/teleporter_pair.tscn" id="7_srohb"]
 
 [node name="Test World" type="Node2D"]
 
@@ -130,3 +131,8 @@ clockwise = false
 [node name="Conveyor4" parent="Special Terrain Holder/Conveyors/Conveyor2" instance=ExtResource("6_jq8hp")]
 position = Vector2(816, -208)
 clockwise = false
+
+[node name="Teleporters" type="Node2D" parent="Special Terrain Holder"]
+
+[node name="TeleporterPair" parent="Special Terrain Holder/Teleporters" instance=ExtResource("7_srohb")]
+position = Vector2(112, -16)
