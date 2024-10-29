@@ -13,9 +13,10 @@ func _process(delta: float) -> void:
 	if !teleport_possible:
 		pass
 	if player != null:
-		var state : State = player.state_machine.current_state
-		if state.state_name == "dashing" && player.velocity.y > 0:
+		if player.state_machine.current_state.state_name == "dashing":
 			print("Dashed on me.")
+		if Input.is_action_pressed("move_down"):
+			print("down")
 
 func _on_receiver_body_entered(body: Node2D) -> void:
 	if body is Player:

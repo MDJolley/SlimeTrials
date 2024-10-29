@@ -1,15 +1,20 @@
 extends Node2D
 
+@onready var path: Path2D = $Path
 @onready var path_follow : PathFollow2D = $Path/PathFollow
-@onready var platform: CharacterBody2D = $Path/PathFollow/Platform
+@onready var animation_player: AnimationPlayer = $Path/AnimationPlayer
 
-@export var move_speed : float = 0.2
-# Called when the node enters the scene tree for the first time.
+@export var loop : bool = false
+@export var move_speed : float = 256.0
+
+var path_length : float 
+
 func _ready() -> void:
-	pass # Replace with function body.
+	path_length = path.curve.get_baked_length()
+	if not loop:
+		animation_player.play("move")
+		animation_player.set_speed_scale( move_speed / path_length )
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	pass
 	path_follow.set_progress(path_follow.progress + move_speed)
-	platform.move_and_slide()

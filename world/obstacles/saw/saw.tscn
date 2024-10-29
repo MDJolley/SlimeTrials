@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2dyy4thp41o5"]
+
+[ext_resource type="Texture2D" uid="uid://7l17fqpidry7" path="res://sprite_sheets/Saw Blade.png" id="1_j3j2w"]
+[ext_resource type="Script" path="res://world/obstacles/saw/saw.gd" id="1_ny3vf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qy2kx"]
+radius = 27.0
+
+[sub_resource type="Animation" id="Animation_ljiqr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_2tgly"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ay70c"]
+_data = {
+"RESET": SubResource("Animation_ljiqr"),
+"spin": SubResource("Animation_2tgly")
+}
+
+[node name="Saw" type="AnimatableBody2D"]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_ny3vf")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_j3j2w")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qy2kx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ay70c")
+}

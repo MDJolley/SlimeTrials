@@ -34,8 +34,6 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	
-	print(parent.velocity.y)
-	
 	if !dashing:
 		return falling if !parent.is_on_floor() else walking
 	parent.velocity = dash_vector.normalized() * parent.dash_speed

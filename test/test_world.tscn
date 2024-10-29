@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnu6xkyq3o46h"]
+[gd_scene load_steps=9 format=3 uid="uid://bnu6xkyq3o46h"]
 
 [ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="1_lo4m8"]
 [ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/dirt_terrain.tscn" id="2_44om4"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://devoil4weqo3x" path="res://world/moving_platforms/moving_platform.tscn" id="5_gb7qm"]
 [ext_resource type="PackedScene" uid="uid://c2qid70w3gwqk" path="res://world/conveyor_belts/conveyor.tscn" id="6_jq8hp"]
 [ext_resource type="PackedScene" uid="uid://t1ro5rnxhmr6" path="res://world/teleporters/teleporter_pair.tscn" id="7_srohb"]
+[ext_resource type="PackedScene" uid="uid://bucmmwfatr7da" path="res://world/obstacles/saw/moving_saw.tscn" id="8_i3hph"]
 
 [node name="Test World" type="Node2D"]
 
@@ -83,9 +84,6 @@ position = Vector2(256, 0)
 [node name="FallingPlatforms10" parent="Special Terrain Holder/Falling/Bridge1" instance=ExtResource("4_xaghl")]
 position = Vector2(288, 0)
 
-[node name="MovingPlatform" parent="Special Terrain Holder" instance=ExtResource("5_gb7qm")]
-position = Vector2(1232, 16)
-
 [node name="Conveyors" type="Node2D" parent="Special Terrain Holder"]
 
 [node name="Converyor1" type="Node2D" parent="Special Terrain Holder/Conveyors"]
@@ -135,4 +133,16 @@ clockwise = false
 [node name="Teleporters" type="Node2D" parent="Special Terrain Holder"]
 
 [node name="TeleporterPair" parent="Special Terrain Holder/Teleporters" instance=ExtResource("7_srohb")]
-position = Vector2(112, -16)
+position = Vector2(-192, 0)
+
+[node name="Moving Plats" type="Node2D" parent="Special Terrain Holder"]
+
+[node name="MovingPlatform" parent="Special Terrain Holder/Moving Plats" instance=ExtResource("5_gb7qm")]
+position = Vector2(-656, -208)
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Saws" type="Node2D" parent="Obstacles"]
+
+[node name="MovingSaw" parent="Obstacles/Saws" instance=ExtResource("8_i3hph")]
+position = Vector2(-560, -304)
