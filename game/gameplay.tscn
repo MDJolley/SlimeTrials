@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ymik5fvr27du"]
+
+[ext_resource type="PackedScene" uid="uid://yox1h17k1f2x" path="res://ui/hud/hud.tscn" id="1_o1xtq"]
+[ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="2_13ubd"]
+[ext_resource type="PackedScene" uid="uid://bnu6xkyq3o46h" path="res://test/test_world.tscn" id="3_jv0a2"]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Hud" parent="." instance=ExtResource("1_o1xtq")]
+position = Vector2(-266, -325)
+
+[node name="Player" parent="." instance=ExtResource("2_13ubd")]
+
+[node name="CurrentMap" type="Node2D" parent="." groups=["current_map"]]
+
+[node name="Test World" parent="CurrentMap" instance=ExtResource("3_jv0a2")]

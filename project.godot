@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Platformer"
-run/main_scene="res://test/test_world.tscn"
+run/main_scene="res://game/gameplay.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerData="*res://globals/player_data.gd"
+GameManager="*res://globals/game_manager.gd"
 
 [input]
 
@@ -57,6 +62,7 @@ dash={
 2d_physics/layer_4="EnemyHitbox"
 2d_physics/layer_5="Terrain"
 2d_physics/layer_6="Spikes"
+2d_physics/layer_7="Interractable"
 
 [rendering]
 

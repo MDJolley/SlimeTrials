@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://yox1h17k1f2x"]
+
+[ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_aena0"]
+[ext_resource type="Texture2D" uid="uid://c0q74q1o2jm3f" path="res://sprite_sheets/Gem.png" id="1_q83u8"]
+
+[node name="Hud" type="Node2D" groups=["hud"]]
+script = ExtResource("1_aena0")
+
+[node name="GemContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 27.0
+offset_top = 27.0
+offset_right = 67.0
+offset_bottom = 67.0
+
+[node name="GemCount" type="Label" parent="GemContainer"]
+layout_mode = 2
+offset_left = 27.0
+offset_top = -12.0
+offset_right = 67.0
+offset_bottom = 11.0
+text = "0"
+
+[node name="GemSprite" type="Sprite2D" parent="GemContainer"]
+texture = ExtResource("1_q83u8")

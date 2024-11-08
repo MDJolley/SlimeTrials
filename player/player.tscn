@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://sprite_sheets/Slime.png" id="12_ylhp1"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="13_aalba"]
 
-[node name="Player" type="CharacterBody2D"]
-collision_mask = 16
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 80
 script = ExtResource("1_e85v1")
 ground_move_speed = 300.0
 air_move_speed = 400.0

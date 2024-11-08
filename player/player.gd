@@ -10,6 +10,7 @@ var has_dash : bool
 var has_double_jump : bool
 var touching_wall : bool = false
 var respawn_location : Vector2
+var gems : Array
 
 @export var ground_acceleration : float = .4
 @export var ground_move_speed : float = 500
@@ -33,7 +34,10 @@ func _check_if_valid_wall() -> bool:
 	
 func _ready() -> void:
 	state_machine.init(self)
-	respawn_location = global_position
+
+
+func set_spawn_location(loc) -> void:
+	respawn_location = loc
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
