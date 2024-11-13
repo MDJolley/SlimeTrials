@@ -3,24 +3,40 @@
 [ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_aena0"]
 [ext_resource type="Texture2D" uid="uid://c0q74q1o2jm3f" path="res://sprite_sheets/Gem.png" id="1_q83u8"]
 
-[node name="Hud" type="Node2D" groups=["hud"]]
-script = ExtResource("1_aena0")
-
-[node name="GemContainer" type="Control" parent="."]
+[node name="Hud" type="Control" groups=["hud"]]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 27.0
-offset_top = 27.0
-offset_right = 67.0
-offset_bottom = 67.0
+script = ExtResource("1_aena0")
 
-[node name="GemCount" type="Label" parent="GemContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-offset_left = 27.0
-offset_top = -12.0
-offset_right = 67.0
-offset_bottom = 11.0
-text = "0"
+theme_override_constants/separation = 5
 
-[node name="GemSprite" type="Sprite2D" parent="GemContainer"]
+[node name="GemIcon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
 texture = ExtResource("1_q83u8")
+
+[node name="GemContainer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GemCount" type="Label" parent="MarginContainer/HBoxContainer/GemContainer"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "0"

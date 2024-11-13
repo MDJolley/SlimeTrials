@@ -9,7 +9,7 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8whq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly4sy"]
 size = Vector2(224, 32)
 
 [sub_resource type="Animation" id="Animation_3s2cu"]
@@ -70,7 +70,7 @@ color = Color(0.874857, 0.557916, 0.85976, 1)
 polygon = PackedVector2Array(-106, -10, 106, -10, 106, 10, -106, 10)
 
 [node name="CollisionShape" parent="Path/Block" index="2"]
-shape = SubResource("RectangleShape2D_t8whq")
+shape = SubResource("RectangleShape2D_ly4sy")
 
 [node name="PathFollow" type="PathFollow2D" parent="Path"]
 position = Vector2(-32, 0)

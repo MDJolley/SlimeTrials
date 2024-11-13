@@ -6,11 +6,12 @@
 
 [node name="Gameplay" type="Node2D"]
 
-[node name="Hud" parent="." instance=ExtResource("1_o1xtq")]
-position = Vector2(-266, -325)
-
 [node name="Player" parent="." instance=ExtResource("2_13ubd")]
 
 [node name="CurrentMap" type="Node2D" parent="." groups=["current_map"]]
 
 [node name="Test World" parent="CurrentMap" instance=ExtResource("3_jv0a2")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("1_o1xtq")]

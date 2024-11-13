@@ -1,6 +1,6 @@
-extends Node2D
+extends Control
 
-@onready var gem_count: Label = $GemContainer/GemCount
+@onready var gem_count: Label = find_child("GemCount")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
