@@ -35,6 +35,21 @@ func _check_if_valid_wall() -> bool:
 func _ready() -> void:
 	state_machine.init(self)
 
+func spawn(loc) -> void:
+	position = loc
+	set_spawn_location(loc)
+	velocity = Vector2(0,0)
+	move_and_slide()
+
+func enable() -> void:
+	print("wut")
+	await get_tree().create_timer(2)
+	visible = true
+	set_collision_layer_value(1, true)
+
+func disable() -> void:
+	visible = false
+	set_collision_layer_value(1, false)
 
 func set_spawn_location(loc) -> void:
 	respawn_location = loc

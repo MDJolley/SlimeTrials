@@ -2,6 +2,6 @@
 
 [ext_resource type="TileSet" uid="uid://b6gxvsbbdcxad" path="res://world/dirt_tileset.tres" id="1_3pt52"]
 
-[node name="DirtTerrain" type="TileMap"]
+[node name="TileMap" type="TileMapLayer"]
+use_parent_material = true
 tile_set = ExtResource("1_3pt52")
-format = 2

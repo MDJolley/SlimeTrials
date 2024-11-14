@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c2dyy4thp41o5" path="res://world/obstacles/saw/saw.tscn" id="2_hvx7o"]
 
 [sub_resource type="Curve2D" id="Curve2D_o3ybk"]
+resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -96, 0, 0, 0, 102.008, 152.344, 96, 0)
 }

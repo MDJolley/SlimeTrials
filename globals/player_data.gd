@@ -5,7 +5,7 @@ var gem_collection : Array
 func collect_gem(gem : Gem) -> void:
 	if !check_if_gem_collected(gem):
 		gem_collection.append(gem.id)
-		GameManager.hud.collect_gem()
+		GameManager.collect_gem()
 	#Add score if necessary?
 	gem.queue_free()
 	

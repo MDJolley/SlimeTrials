@@ -2,11 +2,14 @@ extends Area2D
 class_name Gem
 
 @export var id : int
+@onready var sprite: Sprite2D = $Sprite
 
-# Called when the node enters the scene tree for the first time.
+var collected : bool = false
+
 func _ready() -> void:
-	pass # Replace with function body.
-
+	if PlayerData.check_if_gem_collected(self): 
+		collected = true
+		_on_already_collected()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,3 +21,6 @@ func _on_body_entered(body: Node2D) -> void:
 		pass
 	else:
 		PlayerData.collect_gem(self)
+
+func _on_already_collected() -> void:
+	sprite.set_self_modulate(Color(1, 1, 1, .1))
