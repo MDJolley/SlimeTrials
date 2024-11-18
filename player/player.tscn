@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=19 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -10,9 +10,123 @@
 [ext_resource type="Script" path="res://player/state_machine/double_jumping.gd" id="10_0usld"]
 [ext_resource type="Script" path="res://player/state_machine/wall_jumping.gd" id="11_7klje"]
 [ext_resource type="Script" path="res://player/state_machine/wall_sliding.gd" id="12_asoo4"]
+[ext_resource type="Script" path="res://player/goal_succ.gd" id="12_i1r62"]
 [ext_resource type="Script" path="res://player/state_machine/hyper_jumping.gd" id="12_kknay"]
 [ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://sprite_sheets/Slime.png" id="12_ylhp1"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="13_aalba"]
+
+[sub_resource type="Animation" id="Animation_l7kch"]
+resource_name = "goal_portal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+
+[sub_resource type="Animation" id="Animation_serju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a0cnm"]
+resource_name = "spawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_42jo2"]
+_data = {
+"RESET": SubResource("Animation_serju"),
+"goal_portal": SubResource("Animation_l7kch"),
+"spawn": SubResource("Animation_a0cnm")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 80
@@ -30,6 +144,9 @@ wall_slide_speed = 400.0
 polygon = PackedVector2Array(-15, -14, -15, -4, -11, 0, 11, 0, 15, -4, 15, -14, 12, -20, 3, -24, -3, -24, -12, -20)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_42jo2")
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -112,6 +229,10 @@ double_jumping = NodePath("../DoubleJumping")
 walking = NodePath("../Walking")
 wall_sliding = NodePath("../WallSliding")
 state_name = "hyper_jumping"
+
+[node name="GoalSucc" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("idle")]
+script = ExtResource("12_i1r62")
+idle = NodePath("../Idle")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -16)

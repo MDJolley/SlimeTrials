@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var state_machine = $StateMachine
 @onready var wall_detector: Node2D = $WallDetector
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 const GRAVITY : float = 35
 
@@ -37,8 +39,12 @@ func _ready() -> void:
 
 func spawn(loc) -> void:
 	position = loc
+	animation_player.play("spawn")
+	await animation_player.animation_finished
+	state_machine.change_state($StateMachine/Idle)
 	set_spawn_location(loc)
 	velocity = Vector2(0,0)
+	GameManager.start_time()
 	move_and_slide()
 
 func enable() -> void:
@@ -65,3 +71,21 @@ func _process(delta: float) -> void:
 
 func die() -> void:
 	global_position = respawn_location
+
+func touch_goal(goal : Area2D) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", goal.position, 1)
+	#var final_position : Vector2 = goal.global_position
+	#var anim : Animation = animation_player.get_animation("goal_portal")
+	#var track_id : int = anim.find_track(^":global_position", Animation.TYPE_VALUE)
+	#var key_id_start : int = anim.track_find_key(track_id, 0)
+	#var key_id_end : int = anim.track_find_key(track_id, 1)
+	#anim.track_set_key_value(track_id, key_id_start, global_position)
+	#anim.track_set_key_value(track_id, key_id_end, final_position)
+	animation_player.play("goal_portal")
+	
+	
+	state_machine.change_state($StateMachine/GoalSucc)
+	await animation_player.animation_finished
+	GameManager.load_next_map()
+	
