@@ -4,11 +4,22 @@ extends CharacterBody2D
 @onready var state_machine = $StateMachine
 @onready var wall_detector: Node2D = $WallDetector
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hurtbox: Area2D = $Hurtbox
+@onready var collision_shape: CollisionPolygon2D = $CollisionShape
 
 
 const GRAVITY : float = 35
+const RESPAWN_DELAY : float = 1
 
-var has_dash : bool
+signal spawning
+
+var has_dash : bool :
+	get():
+		return has_dash
+	set(dash):
+		if !dash:
+			$DashParticles.emitDash()
+		has_dash = dash
 var has_double_jump : bool
 var touching_wall : bool = false
 var respawn_location : Vector2
@@ -39,23 +50,22 @@ func _ready() -> void:
 
 func spawn(loc) -> void:
 	position = loc
+	show_sprite()
+	enable_collision()
 	animation_player.play("spawn")
-	await animation_player.animation_finished
 	state_machine.change_state($StateMachine/Idle)
+	await animation_player.animation_finished
 	set_spawn_location(loc)
 	velocity = Vector2(0,0)
 	GameManager.start_time()
-	move_and_slide()
 
-func enable() -> void:
-	print("wut")
-	await get_tree().create_timer(2)
-	visible = true
-	set_collision_layer_value(1, true)
+func enable_collision() -> void:
+	hurtbox.enable_collision()
+	collision_shape.set_deferred("disabled", false)
 
-func disable() -> void:
-	visible = false
-	set_collision_layer_value(1, false)
+func disable_collision() -> void:
+	hurtbox.disable_collision()
+	collision_shape.set_deferred("disabled", true)
 
 func set_spawn_location(loc) -> void:
 	respawn_location = loc
@@ -70,22 +80,28 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func die() -> void:
-	global_position = respawn_location
+	disable_collision()
+	$DeathParticles.emitting = true
+	hide_sprite()
+	state_machine.change_state($StateMachine/Stop)
+	await get_tree().create_timer(RESPAWN_DELAY).timeout
+	spawn(respawn_location)
 
 func touch_goal(goal : Area2D) -> void:
+	disable_collision()
+	state_machine.change_state($StateMachine/GoalSucc)
+	#Animations
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", goal.position, 1)
-	#var final_position : Vector2 = goal.global_position
-	#var anim : Animation = animation_player.get_animation("goal_portal")
-	#var track_id : int = anim.find_track(^":global_position", Animation.TYPE_VALUE)
-	#var key_id_start : int = anim.track_find_key(track_id, 0)
-	#var key_id_end : int = anim.track_find_key(track_id, 1)
-	#anim.track_set_key_value(track_id, key_id_start, global_position)
-	#anim.track_set_key_value(track_id, key_id_end, final_position)
 	animation_player.play("goal_portal")
-	
-	
-	state_machine.change_state($StateMachine/GoalSucc)
 	await animation_player.animation_finished
-	GameManager.load_next_map()
-	
+	tween.stop()
+	#Load next map
+	await GameManager.load_next_map()
+	enable_collision()
+
+func show_sprite() -> void:
+	$Sprite.visible = true
+
+func hide_sprite() -> void:
+	$Sprite.visible = false

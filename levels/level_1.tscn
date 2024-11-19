@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://defnm6r4qsgv"]
+[gd_scene load_steps=5 format=4 uid="uid://defnm6r4qsgv"]
 
 [ext_resource type="PackedScene" uid="uid://clx0aswqcw3tw" path="res://levels/Level_Template.tscn" id="1_p8pjy"]
 [ext_resource type="PackedScene" uid="uid://vncg13q6lvas" path="res://world/interractable/collectable/gem.tscn" id="2_0mqux"]
 [ext_resource type="PackedScene" uid="uid://bucmmwfatr7da" path="res://world/obstacles/saw/moving_saw.tscn" id="3_64nji"]
-[ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://sprite_sheets/Parallax-Sheet.png" id="4_2fe78"]
 
 [sub_resource type="Curve2D" id="Curve2D_ayu3m"]
 resource_local_to_scene = true
@@ -23,7 +22,7 @@ tile_map_data = PackedByteArray("AAA7AAQAAQADAAIAAAA7AAMAAQADAAEAAAA7AAIAAQADAAE
 position = Vector2(384, -224)
 
 [node name="Portal" parent="Interractables/Goal" index="0"]
-position = Vector2(640, -48)
+position = Vector2(752, -48)
 
 [node name="MovingSaw" parent="Obstacles" index="0" instance=ExtResource("3_64nji")]
 position = Vector2(384, -128)
@@ -36,53 +35,5 @@ position = Vector2(0, -96)
 
 [node name="Saw" parent="Obstacles/MovingSaw/Path" index="2"]
 position = Vector2(0, -96)
-
-[node name="Parallax" type="ParallaxBackground" parent="." index="5"]
-
-[node name="Color" type="ParallaxLayer" parent="Parallax" index="0"]
-motion_mirroring = Vector2(960, 540)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Color" index="0"]
-texture = ExtResource("4_2fe78")
-vframes = 5
-
-[node name="Moon" type="ParallaxLayer" parent="Parallax" index="1"]
-position = Vector2(272, 160)
-motion_scale = Vector2(0.01, 0.01)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Moon" index="0"]
-texture = ExtResource("4_2fe78")
-vframes = 5
-frame = 1
-
-[node name="Mountains" type="ParallaxLayer" parent="Parallax" index="2"]
-motion_scale = Vector2(0.1, 0.1)
-motion_offset = Vector2(-500, 0)
-motion_mirroring = Vector2(960, 0)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Mountains" index="0"]
-texture = ExtResource("4_2fe78")
-vframes = 5
-frame = 4
-
-[node name="Clouds2" type="ParallaxLayer" parent="Parallax" index="3"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Clouds2" index="0"]
-texture = ExtResource("4_2fe78")
-vframes = 5
-frame = 3
-
-[node name="Clouds1" type="ParallaxLayer" parent="Parallax" index="4"]
-motion_scale = Vector2(0.3, 0.3)
-motion_offset = Vector2(500, 0)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sky" type="Sprite2D" parent="Parallax/Clouds1" index="0"]
-texture = ExtResource("4_2fe78")
-vframes = 5
-frame = 2
 
 [editable path="Obstacles/MovingSaw"]

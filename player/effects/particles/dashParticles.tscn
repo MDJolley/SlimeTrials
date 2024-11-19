@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq8o1ka6tixuj"]
+
+[ext_resource type="Material" uid="uid://dewtvupgb30gh" path="res://entities/player/effects/particles/dashParticles.tres" id="1_xjvwp"]
+
+[node name="dashParticles" type="GPUParticles2D"]
+amount = 100
+process_material = ExtResource("1_xjvwp")

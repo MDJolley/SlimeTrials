@@ -17,6 +17,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	parent.move_and_slide()
 	parent.velocity.y = -parent.jump_strength
 	fast_fall = false
 

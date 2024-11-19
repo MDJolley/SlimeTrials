@@ -5,14 +5,22 @@ extends State
 @export var dashing : State
 @export var wall_slide : State
 
-var fast_fall :bool = false
+var fast_fall : bool = false
+var buffered_jump : bool = false 
 
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("dash") && parent.has_dash:
 		return dashing
-	if event.is_action_pressed("jump") && parent.has_double_jump:
-		return double_jumping
+	if event.is_action_pressed("jump"):
+		if parent.has_double_jump:
+			return double_jumping
+		else:
+			buffer_jump()
+
 	return null
+
+func buffer_jump() -> void:
+	pass
 
 func enter() -> void:
 	pass

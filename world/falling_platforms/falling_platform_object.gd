@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends AnimatableBody2D
 
 @export var fall_delay : float = 0.5
 @export var fall_lifetime : float = 1
@@ -7,10 +7,12 @@ extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var activation_area: CollisionShape2D = $TriggerArea/CollisionShape
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	#move_and_slide()
+	pass
 
 
 func _on_trigger_area_body_entered(body: Node2D) -> void:
@@ -21,9 +23,10 @@ func fall() -> void:
 	sprite.frame += 1
 	await get_tree().create_timer(fall_delay).timeout
 	sprite.frame += 1
-	velocity.y = fall_speed
-	await get_tree().create_timer(fall_lifetime).timeout
-	queue_respawn()
+	animation_player.play("fall")
+	#velocity.y = fall_speed
+	#await get_tree().create_timer(fall_lifetime).timeout
+	#queue_respawn()
 
 func queue_respawn() -> void:
 	get_parent().spawn_new_platform(respawn_time)

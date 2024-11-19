@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://i47rr27dahq6"]
+[gd_scene load_steps=8 format=3 uid="uid://i47rr27dahq6"]
 
 [ext_resource type="Texture2D" uid="uid://bm7ogll7jx3o7" path="res://sprite_sheets/falling_platform-Sheet.png" id="1_bcwwt"]
 [ext_resource type="Script" path="res://world/falling_platforms/falling_platform_object.gd" id="1_g5n0d"]
@@ -9,9 +9,59 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jq0g5"]
 size = Vector2(30.25, 1.44623)
 
-[node name="FallingPlatformObject" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_1mppj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tle2s"]
+resource_name = "fall"
+step = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(3.36358, 0.277392),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 400)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_respawn"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bsmgg"]
+_data = {
+"RESET": SubResource("Animation_1mppj"),
+"fall": SubResource("Animation_tle2s")
+}
+
+[node name="FallingPlatformObject" type="AnimatableBody2D"]
 collision_layer = 16
-motion_mode = 1
 script = ExtResource("1_g5n0d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,5 +79,10 @@ monitorable = false
 [node name="CollisionShape" type="CollisionShape2D" parent="TriggerArea"]
 position = Vector2(-0.125, -16.1854)
 shape = SubResource("RectangleShape2D_jq0g5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bsmgg")
+}
 
 [connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]

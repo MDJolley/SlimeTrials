@@ -22,11 +22,14 @@ func load_map(map : String) -> void:
 	if loaded_maps.size() > 0:
 		for scene in active_map_holder.get_children():
 			scene.queue_free()
-	active_map_holder.add_child(next_map.instantiate())
+	active_map = next_map.instantiate()
+	player.spawn(active_map.spawn_location)
+	active_map_holder.add_child(active_map)
 	active_map = active_map_holder.get_child(0)
-	await player.spawn(active_map.spawn_location)
+	#player.spawn(active_map.spawn_location)
 
 func load_next_map() -> void:
+	print("Loading next map")
 	var next_map = active_map.next_map
 	load_map(next_map)
 
