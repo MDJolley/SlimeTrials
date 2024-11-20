@@ -88,14 +88,20 @@ func die() -> void:
 	spawn(respawn_location)
 
 func touch_goal(goal : Area2D) -> void:
+	GameManager.stop_clock()
 	disable_collision()
 	state_machine.change_state($StateMachine/GoalSucc)
+	
+	#Speedrun Timer
+	
+	
 	#Animations
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", goal.position, 1)
 	animation_player.play("goal_portal")
 	await animation_player.animation_finished
 	tween.stop()
+	
 	#Load next map
 	await GameManager.load_next_map()
 	enable_collision()

@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://clx0aswqcw3tw"]
+[gd_scene load_steps=9 format=3 uid="uid://clx0aswqcw3tw"]
 
 [ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/dirt_terrain.tscn" id="1_2bk6t"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_ow8gi"]
 [ext_resource type="PackedScene" uid="uid://cli4o8mvj6x5w" path="res://world/interractable/goal/portal.tscn" id="3_cas65"]
-[ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://sprite_sheets/Parallax-Sheet.png" id="4_051je"]
+[ext_resource type="Texture2D" uid="uid://b48bnvwrjcssw" path="res://assets/sprite_sheets/Parallax2-Sheet.png" id="4_g1vpd"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_iiv7m"]
+[ext_resource type="Script" path="res://levels/camera_manager.gd" id="5_qaugu"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_e55ux"]
+
+[sub_resource type="Resource" id="Resource_de3o1"]
+script = ExtResource("6_e55ux")
+duration = 1.0
+transition = 0
+ease = 2
 
 [node name="LevelTemplate" type="Node2D"]
 script = ExtResource("1_ow8gi")
@@ -24,50 +33,47 @@ script = ExtResource("1_ow8gi")
 
 [node name="SpecialTerrain" type="Node2D" parent="."]
 
-[node name="Background" type="ParallaxBackground" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Color" type="ParallaxLayer" parent="Background"]
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(1264, -256)
 motion_mirroring = Vector2(960, 540)
 
-[node name="Sky" type="Sprite2D" parent="Background/Color"]
-texture = ExtResource("4_051je")
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/BG"]
+texture = ExtResource("4_g1vpd")
 vframes = 5
 
-[node name="Moon" type="ParallaxLayer" parent="Background"]
-position = Vector2(272, 160)
-motion_scale = Vector2(0.01, 0.01)
-motion_mirroring = Vector2(1920, 0)
+[node name="Moon" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(280, 264)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(960, 540)
 
-[node name="Sky" type="Sprite2D" parent="Background/Moon"]
-texture = ExtResource("4_051je")
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/Moon"]
+texture = ExtResource("4_g1vpd")
 vframes = 5
 frame = 1
 
-[node name="Mountains" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.1, 0.1)
-motion_offset = Vector2(-500, 0)
-motion_mirroring = Vector2(960, 0)
+[node name="Clouds1" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(480, 200)
+motion_scale = Vector2(0.2, 0.1)
+motion_mirroring = Vector2(960, 540)
 
-[node name="Sky" type="Sprite2D" parent="Background/Mountains"]
-texture = ExtResource("4_051je")
-vframes = 5
-frame = 4
-
-[node name="Clouds2" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sky" type="Sprite2D" parent="Background/Clouds2"]
-texture = ExtResource("4_051je")
-vframes = 5
-frame = 3
-
-[node name="Clouds1" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2(0.3, 0.3)
-motion_offset = Vector2(500, 0)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sky" type="Sprite2D" parent="Background/Clouds1"]
-texture = ExtResource("4_051je")
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/Clouds1"]
+texture = ExtResource("4_g1vpd")
 vframes = 5
 frame = 2
+
+[node name="CameraManager" type="Node" parent="."]
+script = ExtResource("5_qaugu")
+
+[node name="PhantomCamera" type="Node2D" parent="CameraManager"]
+position = Vector2(496, 286)
+script = ExtResource("5_iiv7m")
+follow_mode = 5
+zoom = Vector2(2, 2)
+tween_resource = SubResource("Resource_de3o1")
+tween_on_load = false
+follow_damping = true
+follow_damping_value = Vector2(0.2, 0.2)
+limit_target = NodePath("../../DirtTerrain")
+limit_margin = Vector4i(16, 16, 0, 0)

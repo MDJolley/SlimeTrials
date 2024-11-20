@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c2dyy4thp41o5"]
 
-[ext_resource type="Texture2D" uid="uid://7l17fqpidry7" path="res://sprite_sheets/Saw Blade.png" id="1_j3j2w"]
+[ext_resource type="Texture2D" uid="uid://7l17fqpidry7" path="res://assets/sprite_sheets/Saw Blade.png" id="1_j3j2w"]
 [ext_resource type="Script" path="res://world/obstacles/saw/saw.gd" id="1_ny3vf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qy2kx"]

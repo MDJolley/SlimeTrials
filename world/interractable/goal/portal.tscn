@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cli4o8mvj6x5w"]
 
 [ext_resource type="Script" path="res://world/interractable/goal/portal.gd" id="1_thvca"]
-[ext_resource type="Texture2D" uid="uid://ou6ctrghskwg" path="res://sprite_sheets/Portal.png" id="2_3rnxf"]
+[ext_resource type="Texture2D" uid="uid://ou6ctrghskwg" path="res://assets/sprite_sheets/Portal.png" id="2_3rnxf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2n2sh"]
 radius = 24.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=26 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -12,12 +12,14 @@
 [ext_resource type="Script" path="res://player/state_machine/wall_sliding.gd" id="12_asoo4"]
 [ext_resource type="Script" path="res://player/goal_succ.gd" id="12_i1r62"]
 [ext_resource type="Script" path="res://player/state_machine/hyper_jumping.gd" id="12_kknay"]
-[ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://sprite_sheets/Slime.png" id="12_ylhp1"]
+[ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://assets/sprite_sheets/Slime.png" id="12_ylhp1"]
 [ext_resource type="Script" path="res://player/stop.gd" id="13_6hxwc"]
 [ext_resource type="Script" path="res://player/hurtbox.gd" id="13_aalba"]
 [ext_resource type="Material" uid="uid://dewtvupgb30gh" path="res://player/effects/particles/dashParticles.tres" id="15_b1ltf"]
 [ext_resource type="Script" path="res://player/effects/particles/particleEmitter.gd" id="16_kmg3o"]
-[ext_resource type="Texture2D" uid="uid://ce0fhx2n4y6uk" path="res://sprite_sheets/Death Particle.png" id="17_0f3rq"]
+[ext_resource type="Texture2D" uid="uid://ce0fhx2n4y6uk" path="res://assets/sprite_sheets/Death Particle.png" id="17_0f3rq"]
+[ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://assets/sprite_sheets/Parallax-Sheet.png" id="19_8pfl5"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="20_tpq5a"]
 
 [sub_resource type="Animation" id="Animation_serju"]
 length = 0.001
@@ -176,6 +178,7 @@ libraries = {
 }
 
 [node name="Camera" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_speed = 4.03
 drag_horizontal_enabled = true
@@ -316,5 +319,59 @@ lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/BG"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
+
+[node name="Moon" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(160, 0)
+motion_scale = Vector2(0.001, 0.2)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/Moon"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
+frame = 1
+
+[node name="CloudsFar" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.1, 1.03)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/CloudsFar"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
+frame = 2
+
+[node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.2, 1.05)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/Mountains"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
+frame = 3
+
+[node name="CloudsClose" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.3, 1.1)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/CloudsClose"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
+frame = 4
+
+[node name="Camera2" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("20_tpq5a")
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]

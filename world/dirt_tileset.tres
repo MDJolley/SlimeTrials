@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=11 format=3 uid="uid://b6gxvsbbdcxad"]
 
-[ext_resource type="Texture2D" uid="uid://b67aq1n46q337" path="res://sprite_sheets/Terrarin Template.png" id="1_24bel"]
-[ext_resource type="Texture2D" uid="uid://ob3d1prngam2" path="res://sprite_sheets/Spikes.png" id="1_vqaiu"]
+[ext_resource type="Texture2D" uid="uid://b67aq1n46q337" path="res://assets/sprite_sheets/Terrarin Template.png" id="1_24bel"]
+[ext_resource type="Texture2D" uid="uid://ob3d1prngam2" path="res://assets/sprite_sheets/Spikes.png" id="1_vqaiu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xxfmx"]
 

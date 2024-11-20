@@ -1,6 +1,8 @@
 extends Node
 
 var gem_collection : Array
+var speedrun_records : Dictionary = {}
+
 
 func collect_gem(gem : Gem) -> void:
 	if !check_if_gem_collected(gem):

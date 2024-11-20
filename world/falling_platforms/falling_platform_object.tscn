@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://i47rr27dahq6"]
 
-[ext_resource type="Texture2D" uid="uid://bm7ogll7jx3o7" path="res://sprite_sheets/falling_platform-Sheet.png" id="1_bcwwt"]
+[ext_resource type="Texture2D" uid="uid://bm7ogll7jx3o7" path="res://assets/sprite_sheets/falling_platform-Sheet.png" id="1_bcwwt"]
 [ext_resource type="Script" path="res://world/falling_platforms/falling_platform_object.gd" id="1_g5n0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ojuth"]
