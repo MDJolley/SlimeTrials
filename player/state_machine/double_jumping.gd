@@ -15,7 +15,10 @@ func process_input(event: InputEvent) -> State:
 func enter() -> void:
 	fast_fall = false
 	parent.has_double_jump = false
-	parent.velocity.y = -parent.double_jump_strength
+	if parent.velocity.y >= 0 :
+		parent.velocity.y = -parent.double_jump_strength
+	else:
+		parent.velocity.y += parent.velocity.y
 
 func process_physics(delta: float) -> State:
 	super.air_physics(delta, parent, fast_fall)

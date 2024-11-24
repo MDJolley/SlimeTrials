@@ -30,7 +30,8 @@ func enter() -> void:
 	dashing = true
 	parent.has_dash = false
 	await get_tree().create_timer(parent.dash_time).timeout
-	end_dash()
+	if dashing:
+		end_dash()
 
 func process_physics(delta: float) -> State:
 	

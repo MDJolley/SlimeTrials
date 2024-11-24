@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnt1fux7mx67n"]
+
+[ext_resource type="Texture2D" uid="uid://bm7ogll7jx3o7" path="res://assets/sprite_sheets/falling_platform-Sheet.png" id="1_hq310"]
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_kivfn"]
+[ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="2_toc78"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kivfn")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -20.0
+offset_right = 52.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("1_hq310")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -11.5
+offset_right = 31.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_toc78")
+text = "Start
+"
+horizontal_alignment = 1
+
+[connection signal="button_down" from="Button" to="." method="_on_start_pressed"]

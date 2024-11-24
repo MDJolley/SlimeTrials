@@ -13,6 +13,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
+	if parent.velocity.y < 0:
+		return falling
 	if parent.is_on_floor():
 		return walking
 	if !parent._check_if_valid_wall():

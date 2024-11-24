@@ -7,9 +7,13 @@ extends State
 @export var dashing : State
 #TODO , dash atk
 
+@onready var safety_check: Timer = $"../../SafetyCheck"
+
+
 func enter() -> void:
 	parent.has_dash = true
 	super()
+	safety_check.start()
 
 func process_input(event: InputEvent) -> State:
 	if event.is_action_pressed("dash") && parent.has_dash:
@@ -20,6 +24,7 @@ func process_input(event: InputEvent) -> State:
 
 func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
+		parent.cyote = true
 		return falling
 	
 	super.ground_physics(delta, parent)

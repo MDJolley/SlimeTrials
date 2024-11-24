@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=27 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://player/effects/particles/particleEmitter.gd" id="16_kmg3o"]
 [ext_resource type="Texture2D" uid="uid://ce0fhx2n4y6uk" path="res://assets/sprite_sheets/Death Particle.png" id="17_0f3rq"]
 [ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://assets/sprite_sheets/Parallax-Sheet.png" id="19_8pfl5"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="20_tpq5a"]
 [ext_resource type="Script" path="res://player/safety_check.gd" id="21_421ty"]
 
 [sub_resource type="Animation" id="Animation_serju"]
@@ -179,6 +180,18 @@ libraries = {
 "": SubResource("AnimationLibrary_42jo2")
 }
 
+[node name="Camera" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+position_smoothing_speed = 4.03
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = 1.0
+drag_left_margin = 0.0
+drag_top_margin = 0.0
+drag_right_margin = 0.0
+drag_bottom_margin = 0.0
+
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_or5if")
 starting_state = NodePath("Walking")
@@ -199,13 +212,12 @@ jumping = NodePath("../Jumping")
 dashing = NodePath("../Dashing")
 state_name = "walking"
 
-[node name="Falling" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "double_jumping", "dashing", "wall_slide", "jumping")]
+[node name="Falling" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("walking", "double_jumping", "dashing", "wall_slide")]
 script = ExtResource("7_5a81g")
 walking = NodePath("../Walking")
 double_jumping = NodePath("../DoubleJumping")
 dashing = NodePath("../Dashing")
 wall_slide = NodePath("../WallSliding")
-jumping = NodePath("../Jumping")
 state_name = "falling"
 
 [node name="Jumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "double_jumping", "dashing", "wall_jumping")]
@@ -254,11 +266,9 @@ state_name = "hyper_jumping"
 [node name="GoalSucc" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("idle")]
 script = ExtResource("12_i1r62")
 idle = NodePath("../Idle")
-state_name = "goal_succ"
 
 [node name="Stop" type="Node2D" parent="StateMachine"]
 script = ExtResource("13_6hxwc")
-state_name = "stopped"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
@@ -287,8 +297,9 @@ target_position = Vector2(-9, 0)
 collision_mask = 16
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 40
+monitorable = false
 script = ExtResource("13_aalba")
 
 [node name="CollisionShape" type="CollisionPolygon2D" parent="Hurtbox"]
@@ -314,14 +325,16 @@ fixed_fps = 60
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="Art" type="Sprite2D" parent="ParallaxBackground"]
-position = Vector2(960, 544)
+[node name="BG" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/BG"]
 texture = ExtResource("19_8pfl5")
 vframes = 5
 
 [node name="Moon" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(480, 192)
-motion_scale = Vector2(0.003, 0.003)
+position = Vector2(160, 0)
+motion_scale = Vector2(0.001, 0.2)
 motion_mirroring = Vector2(1920, 1080)
 
 [node name="Art" type="Sprite2D" parent="ParallaxBackground/Moon"]
@@ -329,36 +342,43 @@ texture = ExtResource("19_8pfl5")
 vframes = 5
 frame = 1
 
-[node name="Clouds1" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.08, 0.1)
+[node name="CloudsFar" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.1, 1.03)
 motion_mirroring = Vector2(1920, 1080)
 
-[node name="Art" type="Sprite2D" parent="ParallaxBackground/Clouds1"]
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/CloudsFar"]
 texture = ExtResource("19_8pfl5")
 vframes = 5
 frame = 2
 
-[node name="Clouds2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(-32, 608)
-motion_scale = Vector2(0.15, 0.1)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Art" type="Sprite2D" parent="ParallaxBackground/Clouds2"]
-texture = ExtResource("19_8pfl5")
-vframes = 5
-frame = 3
-
 [node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.1)
-motion_mirroring = Vector2(1920, 1080)
+motion_scale = Vector2(1.2, 1.05)
+motion_mirroring = Vector2(1920, 0)
 
 [node name="Art" type="Sprite2D" parent="ParallaxBackground/Mountains"]
 texture = ExtResource("19_8pfl5")
 vframes = 5
+frame = 3
+
+[node name="CloudsClose" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.3, 1.1)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Art" type="Sprite2D" parent="ParallaxBackground/CloudsClose"]
+texture = ExtResource("19_8pfl5")
+vframes = 5
 frame = 4
 
+[node name="Camera2" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("20_tpq5a")
+
 [node name="SafetyCheck" type="Timer" parent="."]
-wait_time = 0.29
+wait_time = 0.5
 one_shot = true
 script = ExtResource("21_421ty")
 

@@ -1,7 +1,7 @@
 extends State
 
 @onready var right_wall_detector_top: RayCast2D = $"../../WallDetector/RightWallDetectorTop"
-@onready var left_wall_detector_bottom: RayCast2D = $"../../WallDetector/LeftWallDetectorBottom2"
+@onready var left_wall_detector_bottom: RayCast2D = $"../../WallDetector/LeftWallDetectorBottom"
 @onready var left_wall_detector_top: RayCast2D = $"../../WallDetector/LeftWallDetectorTop"
 @onready var right_wall_detector_bottom: RayCast2D = $"../../WallDetector/RightWallDetectorBottom"
 
@@ -23,10 +23,10 @@ func process_input(event: InputEvent) -> State:
 func enter() -> void:
 	if right_wall_detector_bottom.is_colliding() or right_wall_detector_top.is_colliding():
 		blocked_input = 1
-		wall_jump_vector.x = -1
+		wall_jump_vector.x = -.5
 	else:
 		blocked_input = -1
-		wall_jump_vector.x = 1
+		wall_jump_vector.x = .5
 	wall_jump_vector.y = -1
 	parent.velocity = wall_jump_vector.normalized() * parent.wall_jump_strength
 	await get_tree().create_timer(0.2).timeout

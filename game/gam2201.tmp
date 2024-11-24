@@ -1,11 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ymik5fvr27du"]
+[gd_scene load_steps=4 format=3 uid="uid://ymik5fvr27du"]
 
 [ext_resource type="Script" path="res://game/gameplay.gd" id="1_chhoj"]
 [ext_resource type="PackedScene" uid="uid://yox1h17k1f2x" path="res://ui/hud/hud.tscn" id="1_o1xtq"]
 [ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="2_13ubd"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_g0r7p"]
 
-[node name="Gameplay" type="Node2D" groups=["gameplay"]]
+[node name="Gameplay" type="Node2D"]
 script = ExtResource("1_chhoj")
 map_to_load = "res://levels/level_1.tscn"
 
@@ -16,11 +15,3 @@ map_to_load = "res://levels/level_1.tscn"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="CanvasLayer" instance=ExtResource("1_o1xtq")]
-
-[node name="Camera" type="Camera2D" parent="."]
-
-[node name="PhantomCameraHost" type="Node" parent="Camera"]
-process_mode = 3
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("4_g0r7p")

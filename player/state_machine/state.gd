@@ -22,6 +22,8 @@ func process_physics(delta: float) -> State:
 	return null
 
 func ground_physics(delta: float, player: Player) -> void:
+	if parent.inputs_locked:
+		return
 	var input_direction : float = Input.get_axis("move_left", "move_right")
 	if input_direction != 0:
 		input_direction *= player.ground_move_speed
@@ -38,6 +40,8 @@ func ground_physics(delta: float, player: Player) -> void:
 	player.velocity.y = player.GRAVITY
 
 func air_physics(delta: float, player : Player, fast_fall : bool) -> void:
+	if parent.inputs_locked:
+		return
 	var current_gravity = player.GRAVITY
 	if Input.is_action_pressed("jump"):
 		current_gravity *= .75

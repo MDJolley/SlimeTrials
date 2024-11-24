@@ -30,6 +30,8 @@ theme_override_constants/separation = 5
 layout_mode = 2
 size_flags_horizontal = 0
 texture = ExtResource("1_q83u8")
+expand_mode = 2
+stretch_mode = 1
 
 [node name="GemCount" type="Label" parent="MarginContainer/VBoxContainer/GemContainer"]
 layout_mode = 2
@@ -48,3 +50,4 @@ texture = ExtResource("3_ir06n")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_3og1h")
 theme_override_font_sizes/font_size = 32
+text = "0.00"
