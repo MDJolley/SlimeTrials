@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddl40pu2brr1k"]
+
+[ext_resource type="Texture2D" uid="uid://ddhmc7q2s44jv" path="res://assets/sprite_sheets/Hat_Preview_Button.png" id="1_32cds"]
+[ext_resource type="Script" path="res://menus/hat_button.gd" id="2_d4la5"]
+[ext_resource type="Texture2D" uid="uid://ccd6q6klnupyl" path="res://assets/sprite_sheets/Slime.png" id="2_u8hbq"]
+[ext_resource type="Texture2D" uid="uid://cpkx26srjd8l2" path="res://assets/sprite_sheets/Hats.png" id="3_4sact"]
+
+[node name="HatButton" type="Button"]
+custom_minimum_size = Vector2(92, 156)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("1_32cds")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_d4la5")
+
+[node name="Slime" type="Sprite2D" parent="."]
+position = Vector2(46, 110)
+scale = Vector2(2, 2)
+texture = ExtResource("2_u8hbq")
+
+[node name="HatPreview" type="Sprite2D" parent="."]
+position = Vector2(46, 78)
+scale = Vector2(2, 2)
+texture = ExtResource("3_4sact")
+vframes = 10
+frame = 3
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

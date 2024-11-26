@@ -5,9 +5,10 @@ var speedrun_records : Dictionary = {}
 var death_count : int = 0
 var gem_collection : Array
 var save_path : String = "user://player_data.save"
-
+var hat : int = 0
 
 signal player_death
+signal player_hat_changed
 
 func collect_gem(gem : Gem) -> void:
 	if !check_if_gem_collected(gem):
@@ -26,6 +27,7 @@ func save() -> void:
 	file.store_var(speedrun_records)
 	file.store_var(death_count)
 	file.store_var(gem_collection)
+	file.store_var(hat)
 
 
 func load_player_data() -> void:
@@ -34,6 +36,7 @@ func load_player_data() -> void:
 		speedrun_records = file.get_var()
 		death_count = file.get_var()
 		gem_collection = file.get_var()
+		hat = file.get_var()
 
 func purge_player_data() -> void:
 	if FileAccess.file_exists(save_path):
@@ -51,3 +54,8 @@ func purge_player_data() -> void:
 func player_died():
 	death_count += 1
 	player_death.emit()
+
+func set_hat(hat_id : int):
+	player_hat_changed.emit()
+	hat = hat_id
+	save()

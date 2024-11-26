@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var hurtbox: Area2D = $Hurtbox
 @onready var collision_shape: CollisionPolygon2D = $CollisionShape
 @onready var safety_check: Timer = $SafetyCheck
-
+@onready var hat: Sprite2D = $Hat
 
 #const GRAVITY : float = 35
 const GRAVITY : float = 30
@@ -41,7 +41,7 @@ var respawn_location : Vector2
 var gems : Array
 var inputs_locked : bool = false
 var max_fall_speed : float =  600
-var can_touch_goal : bool = false
+var can_interract : bool = false
 
 @export var ground_acceleration : float = .4
 @export var ground_move_speed : float = 500
@@ -64,6 +64,8 @@ func _check_if_valid_wall() -> bool:
 	return false
 
 func _ready() -> void:
+	hat.frame = PlayerData.hat
+	PlayerData.connect("player_hat_changed", func(): hat.frame = PlayerData.hat)
 	state_machine.init(self)
 
 func spawn(loc) -> void:
@@ -78,7 +80,7 @@ func spawn(loc) -> void:
 	enable_collision()
 	spawning.emit.call_deferred()
 	await animation_player.animation_finished
-	can_touch_goal = true
+	can_interract = true
 	set_spawn_location(loc)
 
 func enable_collision() -> void:
@@ -114,6 +116,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func die() -> void:
+	can_interract = false
 	PlayerData.player_died()
 	emit_signal("drop_gems")
 	disable_collision()
@@ -123,10 +126,11 @@ func die() -> void:
 	await get_tree().create_timer(RESPAWN_DELAY).timeout
 	dead.emit()
 
+
 	spawn(respawn_location)
 
 func touch_goal(goal : Area2D) -> void:
-	can_touch_goal = false
+	can_interract = false
 	print("player touched goal")
 	emit_signal("safe_to_collect")
 	emit_signal("touched_goal")

@@ -3,6 +3,7 @@ class_name Menu
 
 const GAMEPLAY_PATH : String = "res://game/gameplay.tscn"
 const LEVEL_SELECT = preload("res://menus/level_select.tscn")
+const HAT_SELECT = preload("res://menus/hat_select.tscn")
 
 @onready var hbox: HBoxContainer = $MarginContainer/HBoxContainer
 
@@ -27,3 +28,6 @@ func _on_practice_pressed() -> void:
 	if hbox.get_child_count() > 1:
 		hbox.get_child(1).queue_free()
 	hbox.add_child(LEVEL_SELECT.instantiate())
+
+func _on_wardrobe_pressed() -> void:
+	get_tree().change_scene_to_packed(HAT_SELECT)

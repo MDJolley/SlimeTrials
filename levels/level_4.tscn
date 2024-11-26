@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5f8et7c1y2v1"]
+
+[ext_resource type="PackedScene" uid="uid://clx0aswqcw3tw" path="res://game/Level_Template.tscn" id="1_qcos8"]
+
+[node name="Level_4" instance=ExtResource("1_qcos8")]
+
+[node name="PhantomCamera" parent="CameraManager" index="0"]
+position = Vector2(496, 286)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=31 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://ce0fhx2n4y6uk" path="res://assets/sprite_sheets/Death Particle.png" id="17_0f3rq"]
 [ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://assets/sprite_sheets/Parallax-Sheet.png" id="19_8pfl5"]
 [ext_resource type="Script" path="res://player/safety_check.gd" id="21_421ty"]
+[ext_resource type="Texture2D" uid="uid://cpkx26srjd8l2" path="res://assets/sprite_sheets/Hats.png" id="21_ajuc5"]
+[ext_resource type="Script" path="res://player/hat.gd" id="22_ui2qv"]
 
 [sub_resource type="Animation" id="Animation_serju"]
 length = 0.001
@@ -364,6 +366,12 @@ frame = 4
 wait_time = 0.29
 one_shot = true
 script = ExtResource("21_421ty")
+
+[node name="Hat" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("21_ajuc5")
+vframes = 10
+script = ExtResource("22_ui2qv")
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="timeout" from="SafetyCheck" to="." method="_on_safety_check_timeout"]

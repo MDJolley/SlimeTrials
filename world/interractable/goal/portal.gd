@@ -10,6 +10,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is not Player:
 		pass
 	else:
-		if not body.can_touch_goal:
+		if not body.can_interract:
 			return
 		body.touch_goal(self)
