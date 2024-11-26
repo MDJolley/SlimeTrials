@@ -1,7 +1,11 @@
 @tool
 extends Area2D
 
-@export var facing : Facing = Facing.UP
+@export var facing : Facing = Facing.UP :
+	set(value):
+		facing = value
+		_set_facing()
+
 enum Facing{UP, DOWN, LEFT, RIGHT}
 @export var launch_power : float = 1000
 
@@ -23,10 +27,6 @@ var bouncing : bool = false
 func _ready() -> void:
 	_set_facing()
 	set_process(false)
-
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		_set_facing()
 
 func _set_facing() -> void:
 	match facing:
@@ -53,16 +53,16 @@ func _launch() -> void:
 	if !has_overlapping_bodies():
 		return
 	var player : Player = get_overlapping_bodies()[0]
-	if player.state_machine.current_state.state_name == "dashing":
-		player.state_machine.change_state_by_name("Falling")
+	player.find_child("DashParticles").emitDash()
+	player.emit_signal("movement_interrupted")
+	player.state_machine.change_state_by_name("Falling")
+	player.has_dash = true
 	if launch_angle.x == 0:
-		player.velocity += launch_angle * launch_power
+		player.velocity = launch_angle * launch_power
 	else:
 		player.lock_inputs(.1)
 		player.velocity = launch_angle * launch_power
-	print(player.velocity)
 	player.move_and_slide()
-	print(player.velocity)
 
 func _reset() -> void:
 	bouncing = false

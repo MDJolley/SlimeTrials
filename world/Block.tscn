@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://br8haf3x4evqp"]
+[gd_scene load_steps=3 format=3 uid="uid://br8haf3x4evqp"]
 
 [ext_resource type="Script" path="res://world/block.gd" id="1_alijc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kj1as"]
+size = Vector2(32, 32)
 
 [node name="Block" type="AnimatableBody2D"]
 collision_layer = 16
@@ -8,10 +11,14 @@ collision_mask = 0
 script = ExtResource("1_alijc")
 
 [node name="Polygon" type="Polygon2D" parent="."]
+color = Color(0.941176, 0.972549, 1, 1)
 polygon = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [node name="Outline" type="Polygon2D" parent="."]
+color = Color(0, 0.74902, 1, 1)
 invert_enabled = true
 invert_border = 6.0
+polygon = PackedVector2Array(-10, -10, 10, -10, 10, 10, -10, 10)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kj1as")

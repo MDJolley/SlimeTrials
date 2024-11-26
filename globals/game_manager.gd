@@ -3,7 +3,7 @@ extends Node
 var player : Player :
 	get():
 		return get_tree().get_first_node_in_group("player")
-var hud : Control :
+var hud : Hud :
 	get:
 		return get_tree().get_first_node_in_group("hud")
 var speedrun_time : float = 0.0:
@@ -28,18 +28,23 @@ func start_clock() -> void:
 
 func stop_clock() -> void:
 	var time = speedrun_time
-	var level = gameplay_scene.loaded_map.map_id
+	var level = gameplay_scene.get_current_map().map_id
 	if level in PlayerData.speedrun_records:
 		var standing_record = PlayerData.speedrun_records.get(level)
 		if time < standing_record:
-			prints("New record for level", level, "=", time)
+			#prints("New record for level", level, "=", time)
+			hud.show_speedrun_record(time, true)
 			PlayerData.speedrun_records[level] = time
+			PlayerData.save()
 			#Display new record in hud?
 		else:
-			prints("Too slow!  Standing record =", standing_record)
+			#prints("Too slow!  Standing record =", standing_record)
+			hud.show_speedrun_record(standing_record, false)
 	else:
+		hud.show_speedrun_record(time, true)
 		PlayerData.speedrun_records.merge({level : speedrun_time})
-		prints("New record for level", level, "=", time)
+		PlayerData.save()
+		#prints("New record for level", level, "=", time)
 
 func collect_gem() -> void:
-	hud.collect_gem()
+	hud.update_gems()

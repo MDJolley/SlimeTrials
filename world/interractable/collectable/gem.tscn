@@ -70,10 +70,13 @@ libraries = {
 }
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
 texture = ExtResource("2_lea2f")
 hframes = 8
 
 [node name="CollectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape" type="CollisionShape2D" parent="CollectionArea"]

@@ -1,12 +1,11 @@
 extends Node2D
 class_name Map
 
+@export var map_id : int
 
 @onready var spawn_location : Vector2 = $SpawnLocation.position
 
-
-@export var map_id : int
-@export_file("*.tscn") var next_map : String
+@export_file("*.tscn") var next_map : String = "empty"
 
 var player : Player
 

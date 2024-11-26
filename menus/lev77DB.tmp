@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhcijxab85een"]
+
+[ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="1_dbw74"]
+[ext_resource type="Script" path="res://menus/level_select.gd" id="1_y24ga"]
+[ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="2_2ju4v"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y24ga")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Level1" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+icon = ExtResource("1_dbw74")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Level1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -11.5
+offset_right = 37.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_2ju4v")
+theme_override_font_sizes/font_size = 23
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1

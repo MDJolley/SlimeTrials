@@ -1,6 +1,5 @@
 @tool
 extends AnimatableBody2D
-class_name Block
 
 @onready var polygon: Polygon2D = $Polygon
 @onready var outline: Polygon2D = $Outline

@@ -9,6 +9,7 @@ extends State
 var dashing : bool = false
 var dash_vector : Vector2
 var is_hyperdashing : bool = false
+var interrupted : bool = false
 #TODO export superjumping?
 
 func process_input(event: InputEvent) -> State:
@@ -21,6 +22,8 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	interrupted = false
+	parent.connect("movement_interrupted", func(): interrupted = true)
 	is_hyperdashing = false
 	dash_vector = Vector2(Input.get_axis("move_left","move_right"), Input.get_axis("move_up", "move_down"))
 	if dash_vector == Vector2(0,0):
@@ -45,7 +48,8 @@ func process_physics(delta: float) -> State:
 
 func end_dash() -> void:
 	#TODO stop particle machine
-	if not is_hyperdashing:
+	if not is_hyperdashing and not interrupted:
 		parent.velocity = parent.velocity.normalized() * parent.air_move_speed
 	dashing = false
 	is_hyperdashing = false
+	interrupted = false

@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8dg8jgoyp0px"]
+
+[ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_mptjd"]
+[ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="1_vh6tv"]
+[ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="2_4rxqh"]
+
+[sub_resource type="Theme" id="Theme_ie6lp"]
+default_font = ExtResource("1_vh6tv")
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mptjd")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.05, 0.05, 0.05, 0.533333)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_vh6tv")
+icon = ExtResource("2_4rxqh")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Continue"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_vh6tv")
+icon = ExtResource("2_4rxqh")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("1_vh6tv")
+icon = ExtResource("2_4rxqh")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Quit Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

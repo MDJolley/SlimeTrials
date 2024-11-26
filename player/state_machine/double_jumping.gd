@@ -3,6 +3,8 @@ extends State
 @export var falling : State
 @export var dashing : State
 
+@onready var double_jump_particles: GPUParticles2D = $"../../DoubleJumpParticles"
+
 var fast_fall : bool = false
 
 func process_input(event: InputEvent) -> State:
@@ -13,12 +15,11 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	double_jump_particles.restart()
+	double_jump_particles.emitting = true
 	fast_fall = false
 	parent.has_double_jump = false
-	if parent.velocity.y >= 0 :
-		parent.velocity.y = -parent.double_jump_strength
-	else:
-		parent.velocity.y += parent.velocity.y
+	parent.velocity.y = -parent.double_jump_strength
 
 func process_physics(delta: float) -> State:
 	super.air_physics(delta, parent, fast_fall)

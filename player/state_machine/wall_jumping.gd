@@ -22,11 +22,18 @@ func process_input(event: InputEvent) -> State:
 
 func enter() -> void:
 	if right_wall_detector_bottom.is_colliding() or right_wall_detector_top.is_colliding():
+		if Input.is_action_pressed("move_right"):
+			wall_jump_vector.x = -1
+		else:
+			wall_jump_vector.x = -.5
 		blocked_input = 1
-		wall_jump_vector.x = -.5
 	else:
+		if Input.is_action_pressed("move_left"):
+			wall_jump_vector.x =1
+		else:
+			wall_jump_vector.x = .5
 		blocked_input = -1
-		wall_jump_vector.x = .5
+		
 	wall_jump_vector.y = -1
 	parent.velocity = wall_jump_vector.normalized() * parent.wall_jump_strength
 	await get_tree().create_timer(0.2).timeout

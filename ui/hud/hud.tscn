@@ -1,53 +1,155 @@
-[gd_scene load_steps=5 format=3 uid="uid://yox1h17k1f2x"]
+[gd_scene load_steps=9 format=3 uid="uid://yox1h17k1f2x"]
 
 [ext_resource type="Script" path="res://ui/hud/hud.gd" id="1_aena0"]
-[ext_resource type="Texture2D" uid="uid://c0q74q1o2jm3f" path="res://assets/sprite_sheets/Gem.png" id="1_q83u8"]
 [ext_resource type="Texture2D" uid="uid://8667jqc2kx7i" path="res://assets/sprite_sheets/Clock.png" id="3_ir06n"]
 [ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="4_3og1h"]
+[ext_resource type="Texture2D" uid="uid://do45iagr0k7b8" path="res://assets/sprite_sheets/Skull.png" id="4_cahsb"]
+[ext_resource type="Texture2D" uid="uid://ndad6tnrau6g" path="res://assets/sprite_sheets/Gem_Icon.png" id="5_ymbgk"]
+
+[sub_resource type="Animation" id="Animation_x3llj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/RecordDisplay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/RecordDisplay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ihmsy"]
+resource_name = "new_record"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/RecordDisplay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/RecordDisplay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tei7i"]
+_data = {
+"RESET": SubResource("Animation_x3llj"),
+"new_record": SubResource("Animation_ihmsy")
+}
 
 [node name="Hud" type="Control" groups=["hud"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_aena0")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TopLeftCornerContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 150.0
+offset_bottom = 104.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLeftCornerContainer"]
 layout_mode = 2
 
-[node name="GemContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="GemIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/GemContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-texture = ExtResource("1_q83u8")
-expand_mode = 2
-stretch_mode = 1
-
-[node name="GemCount" type="Label" parent="MarginContainer/VBoxContainer/GemContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_3og1h")
-theme_override_font_sizes/font_size = 32
-text = "0"
-
-[node name="TimerContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="TimerContainer" type="HBoxContainer" parent="TopLeftCornerContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TimerIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TimerContainer"]
+[node name="TimerIcon" type="TextureRect" parent="TopLeftCornerContainer/VBoxContainer/TimerContainer"]
 layout_mode = 2
 texture = ExtResource("3_ir06n")
 
-[node name="Timer" type="Label" parent="MarginContainer/VBoxContainer/TimerContainer"]
+[node name="Timer" type="Label" parent="TopLeftCornerContainer/VBoxContainer/TimerContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("4_3og1h")
 theme_override_font_sizes/font_size = 32
 text = "0.00"
+
+[node name="DeathContainer" type="HBoxContainer" parent="TopLeftCornerContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DeathIcon" type="TextureRect" parent="TopLeftCornerContainer/VBoxContainer/DeathContainer"]
+layout_mode = 2
+texture = ExtResource("4_cahsb")
+
+[node name="Deaths" type="Label" parent="TopLeftCornerContainer/VBoxContainer/DeathContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_3og1h")
+theme_override_font_sizes/font_size = 32
+text = "0
+"
+
+[node name="GemContainer" type="HBoxContainer" parent="TopLeftCornerContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GemIcon" type="TextureRect" parent="TopLeftCornerContainer/VBoxContainer/GemContainer"]
+layout_mode = 2
+texture = ExtResource("5_ymbgk")
+
+[node name="GemCount" type="Label" parent="TopLeftCornerContainer/VBoxContainer/GemContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("4_3og1h")
+theme_override_font_sizes/font_size = 32
+text = "0
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_top = 120
+
+[node name="RecordDisplay" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("4_3og1h")
+theme_override_font_sizes/font_size = 81
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tei7i")
+}
+speed_scale = 0.5

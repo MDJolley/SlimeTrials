@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=29 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -46,18 +46,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_l7kch"]
@@ -117,22 +105,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -145,6 +121,23 @@ _data = {
 "goal_portal": SubResource("Animation_l7kch"),
 "spawn": SubResource("Animation_a0cnm")
 }
+
+[sub_resource type="Curve" id="Curve_y6yo0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.473333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8e4ux"]
+curve = SubResource("Curve_y6yo0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_msctg"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 360.0
+initial_velocity_min = -120.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_8e4ux")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8884o"]
 particle_flag_disable_z = true
@@ -162,8 +155,9 @@ collision_use_scale = true
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 80
 script = ExtResource("1_e85v1")
-ground_move_speed = 300.0
-air_move_speed = 350.0
+ground_move_speed = 250.0
+ground_friction = 0.3
+air_move_speed = 250.0
 jump_strength = 600.0
 double_jump_strength = 600.0
 dash_speed = 600.0
@@ -298,9 +292,18 @@ polygon = PackedVector2Array(-15, -14, -15, -4, -11, 0, 11, 0, 15, -4, 15, -14, 
 emitting = false
 amount = 100
 process_material = ExtResource("15_b1ltf")
+texture = ExtResource("17_0f3rq")
 randomness = 0.45
 fixed_fps = 60
 script = ExtResource("16_kmg3o")
+
+[node name="DoubleJumpParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_msctg")
+texture = ExtResource("17_0f3rq")
+one_shot = true
+explosiveness = 1.0
 
 [node name="DeathParticles" type="GPUParticles2D" parent="."]
 emitting = false

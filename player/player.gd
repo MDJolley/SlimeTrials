@@ -13,12 +13,15 @@ extends CharacterBody2D
 const GRAVITY : float = 30
 const RESPAWN_DELAY : float = 1
 
+signal pause_game
+signal reset
 signal drop_gems
 signal touched_goal
 signal spawning
 signal safe_to_collect
 signal level_complete
 signal dead
+signal movement_interrupted
 
 var cyote : bool = false :
 	set(param):
@@ -37,6 +40,8 @@ var touching_wall : bool = false
 var respawn_location : Vector2
 var gems : Array
 var inputs_locked : bool = false
+var max_fall_speed : float =  600
+var can_touch_goal : bool = false
 
 @export var ground_acceleration : float = .4
 @export var ground_move_speed : float = 500
@@ -62,30 +67,42 @@ func _ready() -> void:
 	state_machine.init(self)
 
 func spawn(loc) -> void:
+	has_dash = true
+	has_double_jump = true
 	position = loc
-	spawning.emit()
+	velocity = Vector2(0,0)
+	#await get_tree().create_timer(1).timeout
 	show_sprite()
-	enable_collision()
 	animation_player.play("spawn")
 	state_machine.change_state($StateMachine/Idle)
+	enable_collision()
+	spawning.emit.call_deferred()
 	await animation_player.animation_finished
+	can_touch_goal = true
 	set_spawn_location(loc)
-	velocity = Vector2(0,0)
 
 func enable_collision() -> void:
+	print("player collision enabled")
 	set_collision_layer_value(1, true)
 	hurtbox.enable_collision()
+	collision_shape.disabled = false
 	collision_shape.set_deferred("disabled", false)
 
 func disable_collision() -> void:
+	print("player collision disabled")
 	set_collision_layer_value(1, false)
 	hurtbox.disable_collision()
+	collision_shape.disabled = true
 	collision_shape.set_deferred("disabled", true)
 
 func set_spawn_location(loc) -> void:
 	respawn_location = loc
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pause_game.emit.call_deferred()
+	if Input.is_action_just_pressed("restart"):
+		_restart_level()
 	if inputs_locked:
 		return
 	state_machine.process_input(event)
@@ -97,6 +114,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func die() -> void:
+	PlayerData.player_died()
 	emit_signal("drop_gems")
 	disable_collision()
 	$DeathParticles.emitting = true
@@ -104,9 +122,12 @@ func die() -> void:
 	state_machine.change_state($StateMachine/Stop)
 	await get_tree().create_timer(RESPAWN_DELAY).timeout
 	dead.emit()
+
 	spawn(respawn_location)
 
 func touch_goal(goal : Area2D) -> void:
+	can_touch_goal = false
+	print("player touched goal")
 	emit_signal("safe_to_collect")
 	emit_signal("touched_goal")
 	GameManager.stop_clock()
@@ -122,9 +143,8 @@ func touch_goal(goal : Area2D) -> void:
 	animation_player.play("goal_portal")
 	await animation_player.animation_finished
 	tween.stop()
-	
+	position = Vector2(0,0)
 	emit_signal("level_complete")
-	enable_collision()
 
 func show_sprite() -> void:
 	$Sprite.visible = true
@@ -139,6 +159,10 @@ func lock_inputs(time : float) -> void:
 	inputs_locked = true
 	await get_tree().create_timer(time).timeout
 	inputs_locked = false
-	
+
 func return_dash() -> void:
 	has_dash = true
+
+func _restart_level() -> void:
+	reset.emit()
+	drop_gems.emit()

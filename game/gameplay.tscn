@@ -7,15 +7,16 @@
 
 [node name="Gameplay" type="Node2D" groups=["gameplay"]]
 script = ExtResource("1_chhoj")
+pause_menu_path = "res://menus/pause_menu.tscn"
 map_to_load = "res://levels/level_1.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_13ubd")]
 
 [node name="CurrentMap" type="Node2D" parent="." groups=["current_map"]]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HudLayer" type="CanvasLayer" parent="."]
 
-[node name="Hud" parent="CanvasLayer" instance=ExtResource("1_o1xtq")]
+[node name="Hud" parent="HudLayer" instance=ExtResource("1_o1xtq")]
 
 [node name="Camera" type="Camera2D" parent="."]
 
@@ -24,3 +25,15 @@ process_mode = 3
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_g0r7p")
+
+[node name="Popups" type="CanvasLayer" parent="."]
+
+[node name="PopupLayer" type="Control" parent="Popups"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

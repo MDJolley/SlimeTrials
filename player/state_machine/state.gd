@@ -27,7 +27,9 @@ func ground_physics(delta: float, player: Player) -> void:
 	var input_direction : float = Input.get_axis("move_left", "move_right")
 	if input_direction != 0:
 		input_direction *= player.ground_move_speed
-		if not Input.is_action_pressed("move_down"):
+		if (0.0 < input_direction && input_direction < player.velocity.x) or (0.0 > input_direction && input_direction > parent.velocity.x):
+			parent.velocity.x = lerp(parent.velocity.x, input_direction, parent.ground_friction/10)
+		elif not Input.is_action_pressed("move_down"):
 			player.velocity.x = lerp(player.velocity.x, input_direction, player.ground_acceleration)
 		else:
 			player.velocity.x = lerp(player.velocity.x, 0.0, player.ground_friction)
@@ -48,6 +50,7 @@ func air_physics(delta: float, player : Player, fast_fall : bool) -> void:
 	if fast_fall:
 		player.velocity.y += current_gravity
 	player.velocity.y += current_gravity 
+	clamp(player.velocity.y, -2000, player.max_fall_speed)
 	
 	var input_direction = Input.get_axis("move_left", "move_right")
 	if input_direction != 0:

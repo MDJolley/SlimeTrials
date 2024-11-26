@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c033mqmpcg18r"]
+[gd_scene load_steps=3 format=3 uid="uid://dgnxr4mlgg4y1"]
 
 [ext_resource type="Texture2D" uid="uid://b6i0id4iv6six" path="res://assets/sprite_sheets/One Way Platform.png" id="1_3md1v"]
 
@@ -10,7 +10,6 @@ collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.98023e-08, -8)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_xb8cp")
 one_way_collision = true
 

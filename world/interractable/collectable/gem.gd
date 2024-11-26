@@ -26,7 +26,9 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 
 func _on_already_collected() -> void:
-	sprite.set_self_modulate(Color(1, 1, 1, .1))
+	sprite.texture = load("res://assets/sprite_sheets/Gem_Collected.png")
+	sprite.self_modulate.a = .75
+	
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not collectable:
