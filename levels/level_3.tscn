@@ -23,13 +23,13 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p378"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ql4d"]
 size = Vector2(192, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fmuu"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxpjs"]
 size = Vector2(128, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d61r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl7iv"]
 size = Vector2(192, 32)
 
 [node name="Level_3" instance=ExtResource("1_s455e")]
@@ -229,7 +229,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="3"]
-shape = SubResource("RectangleShape2D_2p378")
+shape = SubResource("RectangleShape2D_6ql4d")
 
 [node name="Block3" parent="SpecialTerrain/OneWays" index="1" instance=ExtResource("8_bkcln")]
 position = Vector2(256, 48)
@@ -243,7 +243,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-58, -10, 58, -10, 58, 10, -58, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block3" index="2"]
-shape = SubResource("RectangleShape2D_8fmuu")
+shape = SubResource("RectangleShape2D_gxpjs")
 
 [node name="Block2" parent="SpecialTerrain/OneWays" index="2" instance=ExtResource("8_bkcln")]
 position = Vector2(896, 368)
@@ -257,7 +257,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block2" index="2"]
-shape = SubResource("RectangleShape2D_4d61r")
+shape = SubResource("RectangleShape2D_fl7iv")
 
 [node name="Secrets" type="Node" parent="SpecialTerrain" index="2"]
 
@@ -265,13 +265,13 @@ shape = SubResource("RectangleShape2D_4d61r")
 position = Vector2(320, 384)
 
 [node name="TileMap" parent="SpecialTerrain/Secrets/SecretArea" index="0"]
-tile_map_data = PackedByteArray("AAAAAAEAAgABAAEAAAAAAAIAAgABAAEAAAAAAAAAAgABAAEAAAAAAAMAAgABAAEAAAADAAMAAgAHAAIAAAADAAIAAgADAAEAAAADAAEAAgADAAEAAAADAAAAAgADAAEAAAABAAMAAgACAAEAAAACAAMAAgACAAEAAAACAAIAAgACAAEAAAABAAIAAgACAAEAAAABAAEAAgACAAEAAAACAAEAAgACAAEAAAACAAAAAgACAAEAAAABAAAAAgACAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAABAAAAAgACAAEAAAABAAEAAgACAAEAAAAAAAEAAgABAAEAAAAAAAIAAgABAAEAAAAAAAMAAgABAAEAAAADAAMAAgAHAAIAAAADAAIAAgADAAEAAAADAAEAAgADAAEAAAADAAAAAgADAAEAAAABAAMAAgACAAEAAAACAAMAAgACAAEAAAACAAIAAgACAAEAAAABAAIAAgACAAEAAAACAAEAAgACAAEAAAACAAAAAgACAAEAAAA=")
 
 [node name="CollisionPolygon2D" parent="SpecialTerrain/Secrets/SecretArea" index="1"]
 polygon = PackedVector2Array(0, 0, 0, 0, 128, 0, 128, 128, 0, 128)
 
 [node name="PhantomCamera" parent="CameraManager" index="0"]
-position = Vector2(304, 402)
+position = Vector2(128, 480)
 
 [editable path="Obstacles/Saws/MovingSaw3"]
 [editable path="Obstacles/Saws/MovingSaw4"]

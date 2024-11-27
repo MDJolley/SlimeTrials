@@ -13,10 +13,19 @@ func _ready() -> void:
 	var level_index = 1
 
 	while file_name != "":
-		var button = LEVEL_BUTTON.instantiate()
-		var button_text : Label = button.find_child("Label")
+		var button_holder = LEVEL_BUTTON.instantiate()
+		var button_text : Label = button_holder.find_child("Label")
+		var button : Button = button_holder.find_child("LevelButton")
+		var time : Label = button_holder.find_child("Time")
+		if PlayerData.speedrun_records.has(level_index):
+			var formatted_time = str(PlayerData.speedrun_records.get(level_index)) 
+			var decimal_index = formatted_time.find(".")
+			formatted_time = formatted_time.left(decimal_index + 3)
+			time.text = str("Best : ", formatted_time)
+		else:
+			time.text = "Uncleared"
 		button_text.text = str("Level ", level_index)
-		add_child(button)
+		add_child(button_holder)
 		
 		button.connect("button_down", func(): _level_selected(file_name))
 		

@@ -3,10 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="1_f56da"]
 [ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="2_l2he3"]
 
-[node name="Level1" type="Button"]
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LevelButton" type="Button" parent="."]
+layout_mode = 2
 icon = ExtResource("1_f56da")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="LevelButton"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,5 +30,16 @@ theme_override_constants/shadow_offset_x = 5
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_l2he3")
 text = "Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_l2he3")
+text = "Best-14.123"
 horizontal_alignment = 1
 vertical_alignment = 1
