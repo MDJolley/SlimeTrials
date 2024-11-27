@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=34 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -22,6 +22,9 @@
 [ext_resource type="Script" path="res://player/safety_check.gd" id="21_421ty"]
 [ext_resource type="Texture2D" uid="uid://cpkx26srjd8l2" path="res://assets/sprite_sheets/Hats.png" id="21_ajuc5"]
 [ext_resource type="Script" path="res://player/hat.gd" id="22_ui2qv"]
+[ext_resource type="AudioStream" uid="uid://cacj2ypaq61ld" path="res://assets/sounds/jump.mp3" id="23_h0oeb"]
+[ext_resource type="AudioStream" uid="uid://3t2635680bfo" path="res://assets/sounds/die.mp3" id="24_j0pqj"]
+[ext_resource type="AudioStream" uid="uid://b6aolwettsfg7" path="res://assets/sounds/dash.mp3" id="25_4ojp6"]
 
 [sub_resource type="Animation" id="Animation_serju"]
 length = 0.001
@@ -372,6 +375,20 @@ position = Vector2(0, -32)
 texture = ExtResource("21_ajuc5")
 vframes = 10
 script = ExtResource("22_ui2qv")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("23_h0oeb")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("24_j0pqj")
+volume_db = -4.522
+
+[node name="Dash" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("25_4ojp6")
+volume_db = -7.957
+pitch_scale = 1.7
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="timeout" from="SafetyCheck" to="." method="_on_safety_check_timeout"]

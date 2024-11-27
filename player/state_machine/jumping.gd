@@ -5,6 +5,8 @@ extends State
 @export var dashing : State
 @export var wall_jumping : State
 
+@onready var jump_sfx: AudioStreamPlayer2D = $"../../SFX/Jump"
+
 var fast_fall : bool = false
 
 func process_input(event: InputEvent) -> State:
@@ -17,6 +19,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	jump_sfx.play()
 	parent.move_and_slide()
 	parent.velocity.y = -parent.jump_strength
 	fast_fall = false

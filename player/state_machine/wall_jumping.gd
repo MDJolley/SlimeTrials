@@ -4,6 +4,7 @@ extends State
 @onready var left_wall_detector_bottom: RayCast2D = $"../../WallDetector/LeftWallDetectorBottom"
 @onready var left_wall_detector_top: RayCast2D = $"../../WallDetector/LeftWallDetectorTop"
 @onready var right_wall_detector_bottom: RayCast2D = $"../../WallDetector/RightWallDetectorBottom"
+@onready var jump_sfx: AudioStreamPlayer2D = $"../../SFX/Jump"
 
 
 @export var double_jumping : State
@@ -21,6 +22,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	jump_sfx.play()
 	if right_wall_detector_bottom.is_colliding() or right_wall_detector_top.is_colliding():
 		if Input.is_action_pressed("move_right"):
 			wall_jump_vector.x = -1

@@ -5,6 +5,8 @@ extends State
 @export var hyper : State
 
 @onready var state_machine: Node2D = $".."
+@onready var dash_sfx: AudioStreamPlayer2D = $"../../SFX/Dash"
+
 
 var dashing : bool = false
 var dash_vector : Vector2
@@ -22,6 +24,7 @@ func process_input(event: InputEvent) -> State:
 	return null
 
 func enter() -> void:
+	dash_sfx.play()
 	interrupted = false
 	parent.connect("movement_interrupted", func(): interrupted = true)
 	is_hyperdashing = false

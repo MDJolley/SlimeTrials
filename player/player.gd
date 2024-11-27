@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var collision_shape: CollisionPolygon2D = $CollisionShape
 @onready var safety_check: Timer = $SafetyCheck
 @onready var hat: Sprite2D = $Hat
+@onready var die_sfx: AudioStreamPlayer2D = $SFX/Die
 
 #const GRAVITY : float = 35
 const GRAVITY : float = 30
@@ -84,14 +85,12 @@ func spawn(loc) -> void:
 	set_spawn_location(loc)
 
 func enable_collision() -> void:
-	print("player collision enabled")
 	set_collision_layer_value(1, true)
 	hurtbox.enable_collision()
 	collision_shape.disabled = false
 	collision_shape.set_deferred("disabled", false)
 
 func disable_collision() -> void:
-	print("player collision disabled")
 	set_collision_layer_value(1, false)
 	hurtbox.disable_collision()
 	collision_shape.disabled = true
@@ -116,6 +115,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func die() -> void:
+	die_sfx.play()
 	can_interract = false
 	PlayerData.player_died()
 	emit_signal("drop_gems")
@@ -131,7 +131,6 @@ func die() -> void:
 
 func touch_goal(goal : Area2D) -> void:
 	can_interract = false
-	print("player touched goal")
 	emit_signal("safe_to_collect")
 	emit_signal("touched_goal")
 	GameManager.stop_clock()
