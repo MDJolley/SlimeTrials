@@ -105,6 +105,6 @@ position = Vector2(1104, -208)
 process_mode = 4
 
 [node name="PhantomCamera" parent="CameraManager" index="0"]
-position = Vector2(16, -48)
+position = Vector2(0, -48)
 
 [editable path="Obstacles/Saws/MovingSaw"]
