@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://lyydcbhy3qpo"]
+
+[ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="1_v4irp"]
+[ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/dirt_terrain.tscn" id="2_tpw3h"]
+[ext_resource type="PackedScene" uid="uid://dgnxr4mlgg4y1" path="res://world/one_way_platform.tscn" id="3_3sras"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_v4irp")]
+position = Vector2(-1200, 336)
+
+[node name="DirtTerrain" parent="." instance=ExtResource("2_tpw3h")]
+
+[node name="Special_terrain_holder" type="Node2D" parent="."]
+
+[node name="OneWayPlatform" parent="Special_terrain_holder" instance=ExtResource("3_3sras")]
+position = Vector2(848, -176)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform5" parent="Special_terrain_holder" instance=ExtResource("3_3sras")]
+position = Vector2(3696, 368)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform5" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform5/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform2" parent="Special_terrain_holder/OneWayPlatform5/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform6" parent="Special_terrain_holder" instance=ExtResource("3_3sras")]
+position = Vector2(4112, 208)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform6" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform6/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform2" parent="Special_terrain_holder/OneWayPlatform6/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform7" parent="Special_terrain_holder" instance=ExtResource("3_3sras")]
+position = Vector2(8992, -1648)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform7" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform7/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform2" parent="Special_terrain_holder/OneWayPlatform7/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform8" parent="Special_terrain_holder" instance=ExtResource("3_3sras")]
+position = Vector2(8992, -2224)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform8" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="Special_terrain_holder/OneWayPlatform8/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform2" parent="Special_terrain_holder/OneWayPlatform8/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform8" parent="." instance=ExtResource("3_3sras")]
+position = Vector2(8656, -2384)
+
+[node name="OneWayPlatform" parent="OneWayPlatform8" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform" parent="OneWayPlatform8/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
+
+[node name="OneWayPlatform2" parent="OneWayPlatform8/OneWayPlatform/OneWayPlatform" instance=ExtResource("3_3sras")]
+position = Vector2(32, 0)
