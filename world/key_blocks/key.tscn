@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv1r6ek6gjvf7"]
+
+[ext_resource type="Texture2D" uid="uid://dqy088v64xt7v" path="res://assets/sprite_sheets/Key.png" id="2_sr3n3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xiy66"]
+radius = 14.0357
+
+[node name="Key" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_sr3n3")
+
+[node name="CollectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="CollectionArea"]
+shape = SubResource("CircleShape2D_xiy66")
+
+[connection signal="body_entered" from="CollectionArea" to="." method="_on_player_grabbed"]

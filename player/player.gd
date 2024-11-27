@@ -16,7 +16,7 @@ const RESPAWN_DELAY : float = 1
 
 signal pause_game
 signal reset
-signal drop_gems
+signal drop_followers
 signal touched_goal
 signal spawning
 signal safe_to_collect
@@ -43,6 +43,8 @@ var gems : Array
 var inputs_locked : bool = false
 var max_fall_speed : float =  600
 var can_interract : bool = false
+var facing_direction : int = 1
+var followers : Array = []
 
 @export var ground_acceleration : float = .4
 @export var ground_move_speed : float = 500
@@ -106,6 +108,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_restart_level()
 	if inputs_locked:
 		return
+	if event.is_action_pressed("move_left"):
+		facing_direction = -1
+	elif event.is_action_pressed("move_right"):
+		facing_direction = 1
 	state_machine.process_input(event)
 
 func _physics_process(delta: float) -> void:
@@ -118,11 +124,12 @@ func die() -> void:
 	die_sfx.play()
 	can_interract = false
 	PlayerData.player_died()
-	emit_signal("drop_gems")
+	drop_followers.emit()
 	disable_collision()
 	$DeathParticles.emitting = true
 	hide_sprite()
 	state_machine.change_state($StateMachine/Stop)
+	followers = []
 	await get_tree().create_timer(RESPAWN_DELAY).timeout
 	dead.emit()
 
@@ -168,4 +175,4 @@ func return_dash() -> void:
 
 func _restart_level() -> void:
 	reset.emit()
-	drop_gems.emit()
+	drop_followers.emit()

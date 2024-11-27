@@ -11,10 +11,6 @@ pause_menu_path = "res://menus/pause_menu.tscn"
 map_to_load = "res://levels/level_1.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_13ubd")]
-ground_acceleration = null
-air_acceleration = null
-air_friction = null
-minimum_move_speed = null
 
 [node name="CurrentMap" type="Node2D" parent="." groups=["current_map"]]
 

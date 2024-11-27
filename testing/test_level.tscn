@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=4 uid="uid://71qc3rhbevvp"]
+
+[ext_resource type="PackedScene" uid="uid://clx0aswqcw3tw" path="res://game/Level_Template.tscn" id="1_j8fsy"]
+[ext_resource type="PackedScene" uid="uid://btkdodnye66bq" path="res://world/key_blocks/key_block.tscn" id="2_bj4ga"]
+[ext_resource type="PackedScene" uid="uid://vncg13q6lvas" path="res://world/interractable/collectable/gem.tscn" id="2_k25yn"]
+[ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="3_21l70"]
+
+[node name="Test_Level" instance=ExtResource("1_j8fsy")]
+
+[node name="DirtTerrain" parent="." index="1"]
+tile_map_data = PackedByteArray("AADx/wUAAQABAAAAAADy/wUAAQACAAAAAADz/wUAAQACAAAAAAD0/wUAAQACAAAAAAD1/wUAAQACAAAAAAD2/wUAAQACAAAAAAD3/wUAAQACAAAAAAD4/wUAAQACAAAAAAD5/wUAAQACAAAAAAD6/wUAAQACAAAAAAD7/wUAAQACAAAAAAD8/wUAAQACAAAAAAD9/wUAAQAEAAMAAAD//wUAAQACAAMAAAD+/wUAAQACAAMAAAABAAUAAQACAAMAAAAAAAUAAQACAAMAAAACAAUAAQACAAMAAAADAAUAAQACAAMAAAAEAAUAAQACAAMAAAAFAAUAAQACAAMAAAAGAAUAAQACAAMAAAAHAAUAAQACAAMAAAAIAAUAAQACAAMAAAAJAAUAAQACAAMAAAAKAAUAAQACAAMAAAALAAUAAQACAAMAAAAMAAUAAQACAAMAAAANAAUAAQACAAMAAAAOAAUAAQACAAMAAAAPAAUAAQACAAMAAAAQAAUAAQACAAMAAAARAAUAAQAGAAAAAAARAAYAAQAAAAEAAAARAAcAAQAEAAIAAAASAAcAAQAGAAAAAAASAAgAAQAAAAEAAAASAAkAAQAGAAIAAAARAAkAAQACAAMAAAAQAAkAAQACAAMAAAAPAAkAAQACAAMAAAAOAAkAAQACAAMAAAANAAkAAQAEAAIAAAANAAgAAQAGAAAAAAAMAAgAAQACAAMAAAALAAgAAQACAAMAAAAKAAgAAQACAAMAAAAJAAgAAQACAAMAAAAIAAgAAQACAAMAAAAGAAgAAQACAAMAAAAHAAgAAQACAAMAAAAFAAgAAQABAAMAAAAEAAkAAQADAAMAAAADAAkAAQACAAMAAAACAAkAAQACAAMAAAAAAAkAAQACAAMAAAABAAkAAQACAAMAAAD//wkAAQACAAMAAAD+/wkAAQACAAMAAAD9/wkAAQACAAMAAAD8/wkAAQACAAMAAAD7/wkAAQACAAMAAAD6/wkAAQACAAMAAAD5/wkAAQACAAMAAAD4/wkAAQACAAMAAAD3/wkAAQACAAMAAAD2/wkAAQACAAMAAAD1/wkAAQACAAMAAAD0/wkAAQACAAMAAADz/wkAAQABAAMAAADy/wgAAQADAAMAAADx/wgAAQAGAAQAAADw/wgAAQABAAIAAADw/wcAAQABAAAAAADx/wcAAQAHAAQAAADx/wYAAQAGAAMAAADy/wYAAQACAAIAAADz/wYAAQACAAIAAAD0/wYAAQACAAIAAAD1/wYAAQACAAIAAAD2/wYAAQACAAIAAAD3/wYAAQACAAIAAAD4/wYAAQACAAIAAAD5/wYAAQACAAIAAAD6/wYAAQACAAIAAAD7/wYAAQACAAIAAAD8/wYAAQACAAIAAAD9/wYAAQADAAIAAAA=")
+
+[node name="Gem" parent="Interractables/Collectables" index="0" instance=ExtResource("2_k25yn")]
+position = Vector2(-192, 64)
+
+[node name="Gem2" parent="Interractables/Collectables" index="1" instance=ExtResource("2_k25yn")]
+position = Vector2(-256, 64)
+
+[node name="Gem3" parent="Interractables/Collectables" index="2" instance=ExtResource("2_k25yn")]
+position = Vector2(-320, 64)
+
+[node name="Gem4" parent="Interractables/Collectables" index="3" instance=ExtResource("2_k25yn")]
+position = Vector2(-400, 64)
+
+[node name="Gem5" parent="Interractables/Collectables" index="4" instance=ExtResource("2_k25yn")]
+position = Vector2(-400, 64)
+
+[node name="Portal" parent="Interractables/Goal" index="0"]
+position = Vector2(464, 48)
+
+[node name="KeyBlock" parent="Interractables" index="2" instance=ExtResource("2_bj4ga")]
+position = Vector2(-352, -144)
+
+[node name="Key" parent="Interractables/KeyBlock" index="4"]
+position = Vector2(432, 240)
+
+[node name="PhantomCamera" parent="CameraManager" index="0"]
+position = Vector2(0, 446)
+
+[node name="Player" parent="." index="6" instance=ExtResource("3_21l70")]
+
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
+zoom = Vector2(2, 2)
+
+[editable path="Interractables/KeyBlock"]

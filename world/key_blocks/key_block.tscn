@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://btkdodnye66bq"]
+
+[ext_resource type="Script" path="res://world/key_blocks/key_block.gd" id="1_bwbmp"]
+[ext_resource type="Texture2D" uid="uid://s4lgi822srd7" path="res://assets/KeyBlock.png" id="1_cu4bx"]
+[ext_resource type="PackedScene" uid="uid://bv1r6ek6gjvf7" path="res://world/key_blocks/key.tscn" id="3_8p8iv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vlr3"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jskq0"]
+size = Vector2(128, 128)
+
+[node name="KeyBlock" type="AnimatableBody2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_bwbmp")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0vlr3")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_cu4bx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="OpenArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="OpenCollisionShape" type="CollisionShape2D" parent="OpenArea"]
+shape = SubResource("RectangleShape2D_jskq0")
+
+[node name="Key" parent="." instance=ExtResource("3_8p8iv")]
+position = Vector2(96, 0)
+
+[connection signal="body_entered" from="OpenArea" to="." method="_attempt_to_open"]
