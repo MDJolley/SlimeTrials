@@ -23,13 +23,13 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiliw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udnor"]
 size = Vector2(192, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hw02"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t357u"]
 size = Vector2(128, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oetkx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nweto"]
 size = Vector2(192, 32)
 
 [node name="Level_3" instance=ExtResource("1_s455e")]
@@ -225,7 +225,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="3"]
-shape = SubResource("RectangleShape2D_qiliw")
+shape = SubResource("RectangleShape2D_udnor")
 
 [node name="Block3" parent="SpecialTerrain/OneWays" index="1" instance=ExtResource("8_bkcln")]
 position = Vector2(256, 48)
@@ -239,7 +239,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-58, -10, 58, -10, 58, 10, -58, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block3" index="2"]
-shape = SubResource("RectangleShape2D_0hw02")
+shape = SubResource("RectangleShape2D_t357u")
 
 [node name="Block2" parent="SpecialTerrain/OneWays" index="2" instance=ExtResource("8_bkcln")]
 position = Vector2(896, 368)
@@ -253,7 +253,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block2" index="2"]
-shape = SubResource("RectangleShape2D_oetkx")
+shape = SubResource("RectangleShape2D_nweto")
 
 [node name="Secrets" type="Node" parent="SpecialTerrain" index="2"]
 
@@ -267,7 +267,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAABAAAAAgACAAEAAAABAAEAAgACAAE
 polygon = PackedVector2Array(0, 0, 0, 0, 128, 0, 128, 128, 0, 128)
 
 [node name="PhantomCamera" parent="CameraManager" index="0"]
-position = Vector2(304, 402)
+position = Vector2(128, 480)
 
 [editable path="Obstacles/Saws/MovingSaw3"]
 [editable path="Obstacles/Saws/MovingSaw4"]
