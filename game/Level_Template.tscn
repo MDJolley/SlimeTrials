@@ -37,6 +37,7 @@ script = ExtResource("5_qaugu")
 
 [node name="PhantomCamera" type="Node2D" parent="CameraManager"]
 process_mode = 3
+position = Vector2(496, 286)
 script = ExtResource("5_iiv7m")
 follow_mode = 2
 zoom = Vector2(2, 2)
