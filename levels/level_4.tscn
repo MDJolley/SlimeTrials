@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://emeq0qwtxtu5" path="res://world/one_ways/one_way.tscn" id="5_jjcui"]
 [ext_resource type="PackedScene" uid="uid://dsb50ggmejpul" path="res://world/secret_wall/secret_area.tscn" id="6_x3svf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_45sbv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwql7"]
 size = Vector2(192, 32)
 
 [node name="Level_4" instance=ExtResource("1_qcos8")]
+map_id = 4
 
 [node name="SpawnLocation" parent="." index="0"]
 position = Vector2(-48, -48)
@@ -27,7 +28,8 @@ position = Vector2(-464, -496)
 id = 10
 
 [node name="Gem3" parent="Interractables/Collectables" index="2" instance=ExtResource("2_c2whx")]
-z_index = -1
+z_index = -11
+z_as_relative = false
 position = Vector2(-464, -624)
 id = 11
 
@@ -52,7 +54,7 @@ position = Vector2(48, -336)
 position = Vector2(80, -336)
 
 [node name="PhantomCamera" parent="CameraManager" index="0"]
-position = Vector2(-64, -110)
+position = Vector2(-48, -48)
 
 [node name="Block" parent="." index="6" instance=ExtResource("5_jjcui")]
 position = Vector2(-400, -448)
@@ -69,7 +71,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-10, -10, 170, -10, 170, 10, -10, 10)
 
 [node name="CollisionShape" parent="Block" index="2"]
-shape = SubResource("RectangleShape2D_45sbv")
+shape = SubResource("RectangleShape2D_kwql7")
 
 [node name="SecretArea" parent="." index="7" instance=ExtResource("6_x3svf")]
 position = Vector2(-416, -608)

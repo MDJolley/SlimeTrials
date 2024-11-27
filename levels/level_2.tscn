@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://emeq0qwtxtu5" path="res://world/one_ways/one_way.tscn" id="7_hehcy"]
 [ext_resource type="PackedScene" uid="uid://7vsc1vubakip" path="res://world/falling_platforms/falling_platforms.tscn" id="7_jk6mw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6cnff"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smyog"]
 size = Vector2(192, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr4wk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mu8b8"]
 size = Vector2(192, 32)
 
 [node name="Level_2" instance=ExtResource("1_7a1nq")]
@@ -120,7 +120,7 @@ polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="2"]
 visible = false
-shape = SubResource("RectangleShape2D_6cnff")
+shape = SubResource("RectangleShape2D_smyog")
 
 [node name="Block2" parent="SpecialTerrain/OneWays" index="1" instance=ExtResource("7_hehcy")]
 position = Vector2(-672, -272)
@@ -137,7 +137,7 @@ polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block2" index="2"]
 visible = false
-shape = SubResource("RectangleShape2D_tr4wk")
+shape = SubResource("RectangleShape2D_mu8b8")
 
 [node name="FallingBlocks" type="Node" parent="SpecialTerrain" index="1"]
 
