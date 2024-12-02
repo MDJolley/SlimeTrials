@@ -23,13 +23,13 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sj4m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unp1w"]
 size = Vector2(192, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxid8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aau40"]
 size = Vector2(128, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a14ks"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiucd"]
 size = Vector2(192, 32)
 
 [node name="Level_3" instance=ExtResource("1_s455e")]
@@ -226,7 +226,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="3"]
-shape = SubResource("RectangleShape2D_2sj4m")
+shape = SubResource("RectangleShape2D_unp1w")
 
 [node name="Block3" parent="SpecialTerrain/OneWays" index="1" instance=ExtResource("8_bkcln")]
 position = Vector2(256, 48)
@@ -240,7 +240,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-58, -10, 58, -10, 58, 10, -58, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block3" index="2"]
-shape = SubResource("RectangleShape2D_gxid8")
+shape = SubResource("RectangleShape2D_aau40")
 
 [node name="Block2" parent="SpecialTerrain/OneWays" index="2" instance=ExtResource("8_bkcln")]
 position = Vector2(896, 368)
@@ -254,7 +254,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block2" index="2"]
-shape = SubResource("RectangleShape2D_a14ks")
+shape = SubResource("RectangleShape2D_hiucd")
 
 [node name="Secrets" type="Node" parent="SpecialTerrain" index="2"]
 

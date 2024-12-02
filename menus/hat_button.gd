@@ -3,11 +3,11 @@ extends Button
 var selected : bool
 const HAT_RES_Y : int = 64
 
+@onready var hat_preview: Sprite2D = $HatPreview
+
 var hat_id : int = 0 :
 	get:
 		return hat_preview.frame
-
-@onready var hat_preview: Sprite2D = $HatPreview
 
 signal hat_selected
 
@@ -22,3 +22,8 @@ func _on_pressed() -> void:
 	selected = true
 	hat_selected.emit()
 	self_modulate = Color.CADET_BLUE
+
+func hide_hat() -> void:
+	disabled = true
+	$HatPreview.self_modulate = Color.BLACK
+	$Slime.self_modulate = Color.BLACK

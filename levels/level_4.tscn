@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://emeq0qwtxtu5" path="res://world/one_ways/one_way.tscn" id="5_jjcui"]
 [ext_resource type="PackedScene" uid="uid://dsb50ggmejpul" path="res://world/secret_wall/secret_area.tscn" id="6_x3svf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwql7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7o3s"]
 size = Vector2(192, 32)
 
 [node name="Level_4" instance=ExtResource("1_qcos8")]
@@ -71,7 +71,7 @@ color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-10, -10, 170, -10, 170, 10, -10, 10)
 
 [node name="CollisionShape" parent="Block" index="2"]
-shape = SubResource("RectangleShape2D_kwql7")
+shape = SubResource("RectangleShape2D_e7o3s")
 
 [node name="SecretArea" parent="." index="7" instance=ExtResource("6_x3svf")]
 position = Vector2(-416, -608)

@@ -121,6 +121,7 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 
 func die() -> void:
+	animation_player.play("death_ragdoll")
 	die_sfx.play()
 	can_interract = false
 	PlayerData.player_died()

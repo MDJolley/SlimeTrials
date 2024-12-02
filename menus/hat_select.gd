@@ -26,6 +26,8 @@ func _update():
 			var preview : Sprite2D= hat_button.find_child("HatPreview")
 			preview.frame = frame
 			hat_button.connect("hat_selected", func(): _deselect_all(frame))
+			if not check_unlock_reqs(frame):
+				hat_button.hide_hat()
 			$MarginContainer/VBoxContainer/GridContainer.add_child(hat_button)
 			
 	
@@ -48,3 +50,7 @@ func _select_hat_and_leave() -> void:
 
 func _back_to_menu() -> void:
 	get_tree().change_scene_to_file(MAIN_MENU_PATH)
+
+func check_unlock_reqs(id) -> bool:
+	var gem_count : int = PlayerData.gem_collection.size()
+	return gem_count >= id
