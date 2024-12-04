@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://chpa31r17fvxo"]
+
+[ext_resource type="Texture2D" uid="uid://ddhmc7q2s44jv" path="res://assets/sprite_sheets/Hat_Preview_Button.png" id="1_hcf6j"]
+[ext_resource type="Script" path="res://menus/reset_confirmation.gd" id="1_p5ivx"]
+[ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="2_e8aho"]
+[ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="3_sseub"]
+
+[sub_resource type="Theme" id="Theme_urmch"]
+default_font = ExtResource("2_e8aho")
+
+[node name="ResetConfirmation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_p5ivx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 0.655, 0.54, 1)
+layout_mode = 0
+offset_left = -153.0
+offset_top = -47.0
+offset_right = 17.0
+offset_bottom = 259.0
+rotation = -1.5708
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("1_hcf6j")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+custom_minimum_size = Vector2(200, 126.495)
+layout_mode = 0
+offset_left = 170.0
+offset_right = 462.0
+offset_bottom = 160.0
+rotation = 1.5708
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer"]
+custom_minimum_size = Vector2(276.69, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_urmch")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Are you sure you want to reset all progress?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Reset" type="Button" parent="TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_e8aho")
+icon = ExtResource("3_sseub")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/HBoxContainer/Reset"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_urmch")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Reset
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cancel" type="Button" parent="TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_e8aho")
+icon = ExtResource("3_sseub")
+icon_alignment = 1
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/HBoxContainer/Cancel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_urmch")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Cancel
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="TextureRect/MarginContainer/HBoxContainer/Reset" to="." method="_on_reset_button_down"]
+[connection signal="button_down" from="TextureRect/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_button_down"]

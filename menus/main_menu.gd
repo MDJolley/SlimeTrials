@@ -4,8 +4,10 @@ class_name Menu
 const GAMEPLAY_PATH : String = "res://game/gameplay.tscn"
 const LEVEL_SELECT = preload("res://menus/level_select.tscn")
 const HAT_SELECT = preload("res://menus/hat_select.tscn")
+const RESET_CONFIRMATION = preload("res://menus/reset_confirmation.tscn")
 
 @onready var hbox: HBoxContainer = $MarginContainer/HBoxContainer
+@onready var margin_container: MarginContainer = $MarginContainer
 
 func _ready() -> void:
 	pass
@@ -21,7 +23,7 @@ func _on_exit_pressed() -> void:
 
 
 func _on_reset_pressed() -> void:
-	PlayerData.purge_player_data()
+	margin_container.add_child(RESET_CONFIRMATION.instantiate())
 
 
 func _on_practice_pressed() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d0g2jxvoftjuf"]
+[gd_scene load_steps=35 format=3 uid="uid://d0g2jxvoftjuf"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_e85v1"]
 [ext_resource type="Script" path="res://player/state_machine/state_machine.gd" id="3_or5if"]
@@ -51,6 +51,58 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hat:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_f7xo6"]
+resource_name = "death_ragdoll"
+length = 1.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1.23333),
+"transitions": PackedFloat32Array(1, 0.615572, 1),
+"update": 0,
+"values": [Vector2(0, -32), Vector2(0, -95), Vector2(0, 100)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 18.8496]
 }
 
 [sub_resource type="Animation" id="Animation_l7kch"]
@@ -119,10 +171,35 @@ tracks/1/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hat:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -32)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_42jo2"]
 _data = {
 "RESET": SubResource("Animation_serju"),
+"death_ragdoll": SubResource("Animation_f7xo6"),
 "goal_portal": SubResource("Animation_l7kch"),
 "spawn": SubResource("Animation_a0cnm")
 }

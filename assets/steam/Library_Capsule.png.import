@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s4lgi822srd7"
-path="res://.godot/imported/KeyBlock.png-e4904de01d310bcd9f0819aa3af3d6c2.ctex"
+uid="uid://dv0yhb8mi8s1j"
+path="res://.godot/imported/Library_Capsule.png-8ea7975af0053b830dfde2899d585de6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/KeyBlock.png"
-dest_files=["res://.godot/imported/KeyBlock.png-e4904de01d310bcd9f0819aa3af3d6c2.ctex"]
+source_file="res://assets/steam/Library_Capsule.png"
+dest_files=["res://.godot/imported/Library_Capsule.png-8ea7975af0053b830dfde2899d585de6.ctex"]
 
 [params]
 

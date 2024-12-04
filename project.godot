@@ -13,6 +13,9 @@ config_version=5
 config/name="Platformer"
 run/main_scene="res://menus/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.0313726, 0.219608, 0.172549, 1)
+boot_splash/image="res://assets/sprite_sheets/LOGO+Text.png"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 

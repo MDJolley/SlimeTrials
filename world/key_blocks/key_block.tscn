@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://btkdodnye66bq"]
 
 [ext_resource type="Script" path="res://world/key_blocks/key_block.gd" id="1_bwbmp"]
-[ext_resource type="Texture2D" uid="uid://s4lgi822srd7" path="res://assets/KeyBlock.png" id="1_cu4bx"]
+[ext_resource type="Texture2D" uid="uid://s4lgi822srd7" path="res://assets/sprite_sheets/KeyBlock.png" id="1_cu4bx"]
 [ext_resource type="PackedScene" uid="uid://bv1r6ek6gjvf7" path="res://world/key_blocks/key.tscn" id="3_8p8iv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0vlr3"]

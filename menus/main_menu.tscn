@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8xg6i")
 
-[node name="Control" type="MarginContainer" parent="."]
+[node name="Background" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,30 +23,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BG" type="Sprite2D" parent="Control"]
+[node name="BG" type="Sprite2D" parent="Background"]
 position = Vector2(960, 544)
 texture = ExtResource("2_daw6c")
 vframes = 5
 
-[node name="BG2" type="Sprite2D" parent="Control"]
+[node name="BG2" type="Sprite2D" parent="Background"]
 position = Vector2(672, 348)
 texture = ExtResource("2_daw6c")
 vframes = 5
 frame = 1
 
-[node name="BG3" type="Sprite2D" parent="Control"]
+[node name="BG3" type="Sprite2D" parent="Background"]
 position = Vector2(960, 408)
 texture = ExtResource("2_daw6c")
 vframes = 5
 frame = 2
 
-[node name="BG4" type="Sprite2D" parent="Control"]
+[node name="BG4" type="Sprite2D" parent="Background"]
 position = Vector2(960, 472)
 texture = ExtResource("2_daw6c")
 vframes = 5
 frame = 3
 
-[node name="BG5" type="Sprite2D" parent="Control"]
+[node name="BG5" type="Sprite2D" parent="Background"]
 position = Vector2(960, 544)
 texture = ExtResource("2_daw6c")
 vframes = 5
