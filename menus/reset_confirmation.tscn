@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chpa31r17fvxo"]
+[gd_scene load_steps=6 format=3 uid="uid://bu26gn3g7cpbe"]
 
 [ext_resource type="Texture2D" uid="uid://ddhmc7q2s44jv" path="res://assets/sprite_sheets/Hat_Preview_Button.png" id="1_hcf6j"]
 [ext_resource type="Script" path="res://menus/reset_confirmation.gd" id="1_p5ivx"]

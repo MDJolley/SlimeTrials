@@ -174,6 +174,12 @@ func lock_inputs(time : float) -> void:
 func return_dash() -> void:
 	has_dash = true
 
+func play_sound(name : String):
+	var sound_player : AudioStreamPlayer2D = find_child(name)
+	if sound_player != null:
+		sound_player.play()
+	
+
 func _restart_level() -> void:
 	reset.emit()
 	drop_followers.emit()
