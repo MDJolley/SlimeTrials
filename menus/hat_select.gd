@@ -1,4 +1,3 @@
-@tool
 extends Control
 
 const HAT_V_RESOLUTION : int = 64
@@ -29,13 +28,13 @@ func _update():
 			if not check_unlock_reqs(frame):
 				hat_button.hide_hat()
 			$MarginContainer/VBoxContainer/GridContainer.add_child(hat_button)
-			
-	
+
 func _deselect_all(exception : int):
 	for button in $MarginContainer/VBoxContainer/GridContainer.get_children():
 		if button.hat_id == exception:
-			return
-		button.deselect()
+			pass
+		else:
+			button.deselect()
 
 
 func _select_hat_and_leave() -> void:

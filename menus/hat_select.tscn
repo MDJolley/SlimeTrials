@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkdrvsb7ix2s4"]
+[gd_scene load_steps=6 format=3 uid="uid://dkdrvsb7ix2s4"]
 
 [ext_resource type="Script" path="res://menus/hat_select.gd" id="1_xph3h"]
+[ext_resource type="Texture2D" uid="uid://cw7kdy8r3xjms" path="res://assets/sprite_sheets/Parallax-Sheet.png" id="2_6q0qn"]
 [ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="3_7dsgm"]
 [ext_resource type="Texture2D" uid="uid://cpkx26srjd8l2" path="res://assets/sprite_sheets/Hats.png" id="3_83av2"]
 [ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="4_dsby8"]
@@ -13,6 +14,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xph3h")
+
+[node name="Background" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="Sprite2D" parent="Background"]
+position = Vector2(960, 544)
+texture = ExtResource("2_6q0qn")
+vframes = 5
+
+[node name="BG2" type="Sprite2D" parent="Background"]
+position = Vector2(672, 348)
+texture = ExtResource("2_6q0qn")
+vframes = 5
+frame = 1
+
+[node name="BG3" type="Sprite2D" parent="Background"]
+position = Vector2(960, 408)
+texture = ExtResource("2_6q0qn")
+vframes = 5
+frame = 2
+
+[node name="BG4" type="Sprite2D" parent="Background"]
+position = Vector2(960, 472)
+texture = ExtResource("2_6q0qn")
+vframes = 5
+frame = 3
+
+[node name="BG5" type="Sprite2D" parent="Background"]
+position = Vector2(960, 544)
+texture = ExtResource("2_6q0qn")
+vframes = 5
+frame = 4
 
 [node name="Hat" type="Sprite2D" parent="."]
 visible = false
@@ -100,25 +138,5 @@ theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("4_dsby8")
 text = "Cancel"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/HatButton" to="MarginContainer/VBoxContainer/GridContainer/HatButton" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/HatButton" to="MarginContainer/VBoxContainer/GridContainer/HatButton" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17295" to="MarginContainer/VBoxContainer/GridContainer/@Button@17295" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17295" to="MarginContainer/VBoxContainer/GridContainer/@Button@17295" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17296" to="MarginContainer/VBoxContainer/GridContainer/@Button@17296" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17296" to="MarginContainer/VBoxContainer/GridContainer/@Button@17296" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17297" to="MarginContainer/VBoxContainer/GridContainer/@Button@17297" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17297" to="MarginContainer/VBoxContainer/GridContainer/@Button@17297" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17298" to="MarginContainer/VBoxContainer/GridContainer/@Button@17298" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17298" to="MarginContainer/VBoxContainer/GridContainer/@Button@17298" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17299" to="MarginContainer/VBoxContainer/GridContainer/@Button@17299" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17299" to="MarginContainer/VBoxContainer/GridContainer/@Button@17299" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17300" to="MarginContainer/VBoxContainer/GridContainer/@Button@17300" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17300" to="MarginContainer/VBoxContainer/GridContainer/@Button@17300" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17301" to="MarginContainer/VBoxContainer/GridContainer/@Button@17301" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17301" to="MarginContainer/VBoxContainer/GridContainer/@Button@17301" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17302" to="MarginContainer/VBoxContainer/GridContainer/@Button@17302" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17302" to="MarginContainer/VBoxContainer/GridContainer/@Button@17302" method="_on_toggled"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/@Button@17303" to="MarginContainer/VBoxContainer/GridContainer/@Button@17303" method="_on_pressed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/@Button@17303" to="MarginContainer/VBoxContainer/GridContainer/@Button@17303" method="_on_toggled"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer/Select Margin/Select" to="." method="_select_hat_and_leave"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer/CancelMargin/Cancel" to="." method="_back_to_menu"]
