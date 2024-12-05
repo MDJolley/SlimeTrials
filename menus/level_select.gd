@@ -34,6 +34,7 @@ func _ready() -> void:
 	
 
 func _level_selected(level : String):
+	level = level.trim_suffix(".remap")
 	var gameplay_scene = GAMEPLAY.instantiate()
 	gameplay_scene.map_to_load = str(LEVELS_PATH, level)
 	gameplay_scene.loop = true
