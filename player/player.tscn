@@ -457,15 +457,18 @@ script = ExtResource("22_ui2qv")
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("23_h0oeb")
+bus = &"sfx"
 
 [node name="Die" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("24_j0pqj")
 volume_db = -4.522
+bus = &"sfx"
 
 [node name="Dash" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("25_4ojp6")
 volume_db = -7.957
 pitch_scale = 1.7
+bus = &"sfx"
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="timeout" from="SafetyCheck" to="." method="_on_safety_check_timeout"]

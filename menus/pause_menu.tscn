@@ -1,8 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8dg8jgoyp0px"]
+[gd_scene load_steps=7 format=3 uid="uid://c8dg8jgoyp0px"]
 
 [ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_mptjd"]
 [ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="1_vh6tv"]
 [ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="2_4rxqh"]
+[ext_resource type="PackedScene" uid="uid://dabx1yeo8ir6q" path="res://menus/widgets/volume_slider.tscn" id="2_ruqmu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx6do"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.552941, 0.717647, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.427451, 0.501961, 0.980392, 1)
+border_blend = true
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_color = Color(0, 0, 0, 0.639216)
+shadow_size = 4
 
 [sub_resource type="Theme" id="Theme_ie6lp"]
 default_font = ExtResource("1_vh6tv")
@@ -32,16 +52,59 @@ color = Color(0.05, 0.05, 0.05, 0.533333)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 13
 alignment = 1
 
-[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128.51, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx6do")
+
+[node name="AudioContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="MasterLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Master"
+
+[node name="VolumeSlider" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Music"
+
+[node name="VolumeSlider2" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+layout_mode = 2
+bus_name = "music"
+
+[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SFX"
+
+[node name="VolumeSlider3" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+layout_mode = 2
+bus_name = "sfx"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Continue"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Continue"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,14 +124,14 @@ text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Menu"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,14 +151,14 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Quit"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Quit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -115,6 +178,6 @@ text = "Quit Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

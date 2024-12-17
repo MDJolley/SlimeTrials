@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ymik5fvr27du"]
+[gd_scene load_steps=6 format=3 uid="uid://ymik5fvr27du"]
 
 [ext_resource type="Script" path="res://game/gameplay.gd" id="1_chhoj"]
 [ext_resource type="PackedScene" uid="uid://yox1h17k1f2x" path="res://ui/hud/hud.tscn" id="1_o1xtq"]
 [ext_resource type="PackedScene" uid="uid://d0g2jxvoftjuf" path="res://player/player.tscn" id="2_13ubd"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_g0r7p"]
+[ext_resource type="AudioStream" uid="uid://if0puvcrndx" path="res://assets/sounds/night-detective.mp3" id="5_87nft"]
 
 [node name="Gameplay" type="Node2D" groups=["gameplay"]]
 script = ExtResource("1_chhoj")
@@ -43,3 +44,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_87nft")
+volume_db = -30.008
+autoplay = true
+bus = &"music"
+parameters/looping = false
