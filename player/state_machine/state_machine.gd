@@ -13,7 +13,7 @@ func init(parent:Player) -> void:
 	change_state(starting_state)
 
 func change_state(new_state: State)-> void:
-	#print("changing to:  ", new_state)
+	print("changing to:  ", new_state)
 	if current_state:
 		current_state.exit()
 	

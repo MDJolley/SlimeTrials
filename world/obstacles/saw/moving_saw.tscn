@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bucmmwfatr7da"]
+[gd_scene load_steps=9 format=3 uid="uid://bucmmwfatr7da"]
 
 [ext_resource type="Script" path="res://world/moving_platforms/moving_platform.gd" id="1_sigjq"]
 [ext_resource type="PackedScene" uid="uid://c2dyy4thp41o5" path="res://world/obstacles/saw/saw.tscn" id="2_hvx7o"]
@@ -26,6 +26,23 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_24drq"]
+resource_name = "loop"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="Animation" id="Animation_885mb"]
 resource_name = "move"
 length = 1.5
@@ -46,6 +63,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lsb1r"]
 _data = {
 "RESET": SubResource("Animation_3s2cu"),
+"loop": SubResource("Animation_24drq"),
 "move": SubResource("Animation_885mb")
 }
 

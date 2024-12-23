@@ -156,6 +156,7 @@ func touch_goal(goal : Area2D) -> void:
 	tween.stop()
 	position = Vector2(0,0)
 	emit_signal("level_complete")
+	followers = []
 
 func show_sprite() -> void:
 	$Sprite.visible = true

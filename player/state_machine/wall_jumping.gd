@@ -10,7 +10,7 @@ extends State
 @export var double_jumping : State
 @export var falling : State
 @export var dashing : State
-
+@export var walking : State
 
 var wall
 var wall_jump_vector : Vector2
@@ -60,7 +60,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x = lerp(parent.velocity.x, 0.0, parent.air_friction)
 	else:
 		parent.velocity.x = 0
-	
+
 	
 	parent.move_and_slide()
 	return null

@@ -57,6 +57,7 @@ func _launch() -> void:
 	player.emit_signal("movement_interrupted")
 	player.state_machine.change_state_by_name("Falling")
 	player.has_dash = true
+	player.has_double_jump = true
 	player.play_sound("Dash")
 	if launch_angle.x == 0:
 		player.velocity = launch_angle * launch_power

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8dg8jgoyp0px"]
+[gd_scene load_steps=8 format=3 uid="uid://c8dg8jgoyp0px"]
 
 [ext_resource type="Script" path="res://menus/pause_menu.gd" id="1_mptjd"]
 [ext_resource type="FontFile" uid="uid://qjva5kwbbh0t" path="res://assets/fonts/Hartsfolk.otf" id="1_vh6tv"]
 [ext_resource type="Texture2D" uid="uid://dv8lqv8yt14nb" path="res://assets/sprite_sheets/Button.png" id="2_4rxqh"]
 [ext_resource type="PackedScene" uid="uid://dabx1yeo8ir6q" path="res://menus/widgets/volume_slider.tscn" id="2_ruqmu"]
+[ext_resource type="Texture2D" uid="uid://b75q7ar6y34yv" path="res://assets/sprite_sheets/Controller_Button.png" id="3_5xv0s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx6do"]
 content_margin_left = 4.0
@@ -48,63 +49,171 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0.05, 0.05, 0.05, 0.533333)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 400
+
+[node name="ControlsTip" type="PanelContainer" parent="MarginContainer/MarginContainer"]
+custom_minimum_size = Vector2(191.37, 184.925)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx6do")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MarginContainer/ControlsTip"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label2" type="Label" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Controls
+(Support to change coming soon)
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 45
+alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Movement
+Jump
+Dash
+Restart
+pause"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "WASD 
+Space  
+Shift  
+R 
+esc "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_ie6lp")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+text = "Left Stick
+
+
+
+Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/Control"]
+position = Vector2(-54, 98)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_5xv0s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/Control"]
+position = Vector2(-54, 120)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_5xv0s")
+
+[node name="Sprite2D3" type="Sprite2D" parent="MarginContainer/MarginContainer/ControlsTip/MarginContainer/Control"]
+position = Vector2(-54, 142)
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_5xv0s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 13
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(128.51, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_vx6do")
 
-[node name="AudioContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="AudioContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="MasterLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+[node name="MasterLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Master"
 
-[node name="VolumeSlider" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+[node name="VolumeSlider" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
 layout_mode = 2
 bus_name = "Master"
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+[node name="MusicLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Music"
 
-[node name="VolumeSlider2" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+[node name="VolumeSlider2" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
 layout_mode = 2
 bus_name = "music"
 
-[node name="SFXLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
+[node name="SFXLabel" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "SFX"
 
-[node name="VolumeSlider3" parent="MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
+[node name="VolumeSlider3" parent="MarginContainer/MarginContainer/VBoxContainer/PanelContainer/AudioContainer" instance=ExtResource("2_ruqmu")]
 layout_mode = 2
 bus_name = "sfx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Continue" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Continue"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Continue"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -124,14 +233,14 @@ text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Menu" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Menu"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -151,14 +260,14 @@ text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("1_vh6tv")
 icon = ExtResource("2_4rxqh")
 icon_alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/Quit"]
+[node name="Label" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Quit"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -178,6 +287,6 @@ text = "Quit Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Continue" to="." method="_on_continue_pressed"]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="button_down" from="MarginContainer/MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

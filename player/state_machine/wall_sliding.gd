@@ -16,6 +16,7 @@ func process_physics(delta: float) -> State:
 	if parent.velocity.y < 0:
 		return falling
 	if parent.is_on_floor():
+		parent.has_double_jump = true
 		return walking
 	if !parent._check_if_valid_wall():
 		return falling

@@ -51,4 +51,4 @@ stream = ExtResource("5_87nft")
 volume_db = -30.008
 autoplay = true
 bus = &"music"
-parameters/looping = false
+parameters/looping = true

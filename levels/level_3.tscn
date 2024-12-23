@@ -23,13 +23,13 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmhgw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qepse"]
 size = Vector2(192, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrv5c"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpmjv"]
 size = Vector2(128, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5fav"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fnec"]
 size = Vector2(192, 32)
 
 [node name="Level_3" instance=ExtResource("1_s455e")]
@@ -214,47 +214,37 @@ position = Vector2(624, 272)
 position = Vector2(896, 272)
 
 [node name="Polygon" parent="SpecialTerrain/OneWays/Block" index="0"]
-color = Color(0.941176, 0.972549, 1, 1)
 polygon = PackedVector2Array(-96, -16, 96, -16, 96, 16, -96, 16)
 
-[node name="Polygon2" type="Polygon2D" parent="SpecialTerrain/OneWays/Block" index="1"]
-color = Color(0.941176, 0.972549, 1, 1)
-polygon = PackedVector2Array(-96, -16, 96, -16, 96, 16, -96, 16)
-
-[node name="Outline" parent="SpecialTerrain/OneWays/Block" index="2"]
-color = Color(0, 0.74902, 1, 1)
+[node name="Outline" parent="SpecialTerrain/OneWays/Block" index="1"]
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
-[node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="3"]
-shape = SubResource("RectangleShape2D_mmhgw")
+[node name="CollisionShape" parent="SpecialTerrain/OneWays/Block" index="2"]
+shape = SubResource("RectangleShape2D_qepse")
 
 [node name="Block3" parent="SpecialTerrain/OneWays" index="1" instance=ExtResource("8_bkcln")]
 position = Vector2(256, 48)
 
 [node name="Polygon" parent="SpecialTerrain/OneWays/Block3" index="0"]
-color = Color(0.941176, 0.972549, 1, 1)
 polygon = PackedVector2Array(-64, -16, 64, -16, 64, 16, -64, 16)
 
 [node name="Outline" parent="SpecialTerrain/OneWays/Block3" index="1"]
-color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-58, -10, 58, -10, 58, 10, -58, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block3" index="2"]
-shape = SubResource("RectangleShape2D_vrv5c")
+shape = SubResource("RectangleShape2D_rpmjv")
 
 [node name="Block2" parent="SpecialTerrain/OneWays" index="2" instance=ExtResource("8_bkcln")]
 position = Vector2(896, 368)
 
 [node name="Polygon" parent="SpecialTerrain/OneWays/Block2" index="0"]
-color = Color(0.941176, 0.972549, 1, 1)
 polygon = PackedVector2Array(-96, -16, 96, -16, 96, 16, -96, 16)
 
 [node name="Outline" parent="SpecialTerrain/OneWays/Block2" index="1"]
-color = Color(0, 0.74902, 1, 1)
 polygon = PackedVector2Array(-90, -10, 90, -10, 90, 10, -90, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/OneWays/Block2" index="2"]
-shape = SubResource("RectangleShape2D_p5fav")
+shape = SubResource("RectangleShape2D_8fnec")
 
 [node name="Secrets" type="Node" parent="SpecialTerrain" index="2"]
 

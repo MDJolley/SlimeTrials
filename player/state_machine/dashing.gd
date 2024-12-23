@@ -28,7 +28,25 @@ func enter() -> void:
 	interrupted = false
 	parent.connect("movement_interrupted", func(): interrupted = true)
 	is_hyperdashing = false
-	dash_vector = Vector2(Input.get_axis("move_left","move_right"), Input.get_axis("move_up", "move_down"))
+	
+	var x_input = Input.get_axis("move_left", "move_right")
+	if x_input < -0.3 :
+		x_input = -1
+	elif x_input > 0.3 :
+		x_input = 1
+	else :
+		x_input = 0
+	var y_input = Input.get_axis("move_up", "move_down")
+	if y_input < -0.3 :
+		y_input = -1
+	elif y_input > 0.3 :
+		y_input = 1
+	else :
+		y_input = 0
+	dash_vector = Vector2(x_input, y_input)
+	
+	
+	
 	if dash_vector == Vector2(0,0):
 		#TODO Dash in direction player is facing
 		return

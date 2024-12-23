@@ -305,11 +305,12 @@ falling = NodePath("../Falling")
 dashing = NodePath("../Dashing")
 state_name = "double_jumping"
 
-[node name="WallJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("double_jumping", "falling", "dashing")]
+[node name="WallJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("double_jumping", "falling", "dashing", "walking")]
 script = ExtResource("11_7klje")
 double_jumping = NodePath("../DoubleJumping")
 falling = NodePath("../Falling")
 dashing = NodePath("../Dashing")
+walking = NodePath("../Walking")
 state_name = "wall_jumping"
 
 [node name="WallSliding" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("wall_jumping", "falling", "dashing", "walking")]
