@@ -238,7 +238,6 @@ collision_use_scale = true
 collision_mask = 80
 script = ExtResource("1_e85v1")
 ground_move_speed = 250.0
-ground_friction = 0.3
 air_move_speed = 250.0
 jump_strength = 600.0
 double_jump_strength = 600.0
@@ -292,11 +291,12 @@ dashing = NodePath("../Dashing")
 wall_jumping = NodePath("../WallJumping")
 state_name = "jumping"
 
-[node name="Dashing" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "walking", "hyper")]
+[node name="Dashing" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "walking", "hyper", "double_jumping")]
 script = ExtResource("9_ld60b")
 falling = NodePath("../Falling")
 walking = NodePath("../Walking")
 hyper = NodePath("../HyperJumping")
+double_jumping = NodePath("../DoubleJumping")
 state_name = "dashing"
 
 [node name="DoubleJumping" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("falling", "dashing")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://clx0aswqcw3tw"]
 
-[ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/dirt_terrain.tscn" id="1_2bk6t"]
+[ext_resource type="PackedScene" uid="uid://djqkysh8roilp" path="res://world/terrain.tscn" id="1_2bk6t"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_ow8gi"]
 [ext_resource type="PackedScene" uid="uid://cli4o8mvj6x5w" path="res://world/interractable/goal/portal.tscn" id="3_cas65"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="5_iiv7m"]

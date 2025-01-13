@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://yhlbarajwku2"]
+
+[ext_resource type="Script" path="res://world/icicle/icicle.gd" id="1_raiit"]
+[ext_resource type="Texture2D" uid="uid://d2dmptwck7vul" path="res://assets/sprite_sheets/Icicle.png" id="2_4qrrt"]
+
+[node name="Node2D" type="CharacterBody2D"]
+position = Vector2(0, 16)
+script = ExtResource("1_raiit")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-10, -16, 0, 14, 10, -16)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4qrrt")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -16)
+target_position = Vector2(0, 137)

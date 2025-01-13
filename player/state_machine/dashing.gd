@@ -3,6 +3,7 @@ extends State
 @export var falling : State
 @export var walking : State
 @export var hyper : State
+@export var double_jumping : State
 
 @onready var state_machine: Node2D = $".."
 @onready var dash_sfx: AudioStreamPlayer2D = $"../../SFX/Dash"
@@ -21,6 +22,9 @@ func process_input(event: InputEvent) -> State:
 	elif event.is_action_pressed("jump") && parent.is_on_floor():
 		is_hyperdashing = true
 		return hyper
+	elif event.is_action_pressed("jump") && parent.has_double_jump:
+		print("trying to cyote")
+		parent.cyote = true
 	return null
 
 func enter() -> void:
@@ -74,3 +78,5 @@ func end_dash() -> void:
 	dashing = false
 	is_hyperdashing = false
 	interrupted = false
+	if parent.cyote:
+		parent.state_machine.change_state(double_jumping)

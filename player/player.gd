@@ -24,6 +24,20 @@ signal level_complete
 signal dead
 signal movement_interrupted
 
+@export var default_ground_acceleration : float = .4
+@export var ground_move_speed : float = 500
+@export var default_ground_friction : float = 0.4
+@export var air_acceleration : float = .2
+@export var air_move_speed : float = 550
+@export var air_friction : float = 0.03
+@export var minimum_move_speed : float = 0.01
+@export var jump_strength : float = 1000
+@export var double_jump_strength : float = 1000
+@export var dash_speed : float = 1000
+@export var dash_time : float = 0.1
+@export var wall_slide_speed : float = 500
+@export var wall_jump_strength : float = 1000
+
 var cyote : bool = false :
 	set(param):
 		cyote = param
@@ -45,20 +59,24 @@ var max_fall_speed : float =  600
 var can_interract : bool = false
 var facing_direction : int = 1
 var followers : Array = []
+var ice_blocks : int = 0
+var on_ice : bool = false :
+	set(value):
+		if value == true:
+			ground_friction = default_ground_friction / 50
+			ground_acceleration = default_ground_acceleration / 10
+		else:
+			ground_friction = default_ground_friction
+			ground_acceleration = default_ground_acceleration
+var ground_friction : float = default_ground_friction
+var ground_acceleration : float = default_ground_acceleration
 
-@export var ground_acceleration : float = .4
-@export var ground_move_speed : float = 500
-@export var ground_friction : float = 0.4
-@export var air_acceleration : float = .2
-@export var air_move_speed : float = 550
-@export var air_friction : float = 0.03
-@export var minimum_move_speed : float = 0.01
-@export var jump_strength : float = 1000
-@export var double_jump_strength : float = 1000
-@export var dash_speed : float = 1000
-@export var dash_time : float = 0.1
-@export var wall_slide_speed : float = 500
-@export var wall_jump_strength : float = 1000
+
+
+func edit_ice_blocks(value : int) :
+	ice_blocks = ice_blocks + value
+	print(ice_blocks, " <- ice blocks")
+	on_ice = true if ice_blocks > 0 else false
 
 func _check_if_valid_wall() -> bool:
 	for raycast in wall_detector.get_children():
@@ -105,7 +123,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		pause_game.emit.call_deferred()
 	if Input.is_action_just_pressed("restart"):
-		_restart_level()
+		if ! state_machine.current_state == $StateMachine/GoalSucc :
+			_restart_level()
 	if inputs_locked:
 		return
 	if event.is_action_pressed("move_left"):

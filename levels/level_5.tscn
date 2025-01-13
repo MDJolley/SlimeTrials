@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://emeq0qwtxtu5" path="res://world/one_ways/one_way.tscn" id="5_dpgg4"]
 [ext_resource type="PackedScene" uid="uid://dsb50ggmejpul" path="res://world/secret_wall/secret_area.tscn" id="5_jewcj"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3usx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aij2w"]
 size = Vector2(64, 32)
 
 [node name="Level_5" instance=ExtResource("1_ex5v0")]
@@ -68,7 +68,7 @@ polygon = PackedVector2Array(-32, -16, 32, -16, 32, 16, -32, 16)
 polygon = PackedVector2Array(-26, -10, 26, -10, 26, 10, -26, 10)
 
 [node name="CollisionShape" parent="SpecialTerrain/Block" index="2"]
-shape = SubResource("RectangleShape2D_l3usx")
+shape = SubResource("RectangleShape2D_aij2w")
 
 [node name="SecretArea" parent="SpecialTerrain" index="1" instance=ExtResource("5_jewcj")]
 
